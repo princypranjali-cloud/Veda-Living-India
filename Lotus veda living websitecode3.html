@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veda Living India | Balance with Love</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+        /* 🪷 Beautiful True Lotus Palette directly from image reference */
+        :root {
+            --bg-canvas: #FCFAF7;       
+            --white: #FFFFFF;
+            --primary-text: #242925;   
+            --lotus-vibrant-pink: #E45F88; 
+            --lotus-soft-petal: #FCD9E2;   
+            --pod-bright-green: #76C147;   
+            --leaf-deep-teal: #2F5C47;     
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--primary-text); overflow-x: hidden; scroll-behavior: smooth; }
+        .serif-premium { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.01em; }
+
+        /* 🍃 Cute Breathing Slow-Pulse Animation */
+        .pulse-slow { animation: slowBreathe 4s infinite ease-in-out; }
+        @keyframes slowBreathe {
+            0%, 100% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* 🏷️ 10% First Purchase Floating Bubble */
+        .discount-bubble {
+            position: fixed; bottom: 30px; right: 30px; background: var(--lotus-vibrant-pink);
+            color: var(--white); width: 85px; height: 85px; border-radius: 50%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+            box-shadow: 0 8px 25px rgba(228, 95, 136, 0.3); z-index: 999; cursor: pointer;
+            animation: bubbleFloat 3s infinite ease-in-out; border: 2px solid var(--white); text-transform: uppercase;
+        }
+        .discount-bubble span { font-size: 1.1rem; line-height: 1; margin-bottom: 2px; }
+        @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 8%;
+            background: rgba(252, 250, 247, 0.95); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(47, 92, 71, 0.05);
+        }
+        .logo { font-size: 1.35rem; letter-spacing: 0.12em; color: var(--leaf-deep-teal); text-decoration: none; }
+        .logo span { color: var(--lotus-vibrant-pink); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a {
+            margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.12em; position: relative; padding-bottom: 4px; font-weight: 500;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--lotus-vibrant-pink); }
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .menu-toggle span { width: 25px; height: 2px; background-color: var(--primary-text); }
+
+        /* Hero */
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
+        .tagline { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--leaf-deep-teal); margin-bottom: 20px; font-weight: 600; }
+        .hero h1 { font-size: 3.5rem; color: var(--primary-text); line-height: 1.25; max-width: 850px; margin-bottom: 30px; }
+        .hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--lotus-vibrant-pink); }
+
+        /* E-commerce Product Grid Layout */
+        .products-section { padding: 60px 8%; position: relative; }
+        .section-title { text-align: center; font-size: 2.4rem; color: var(--primary-text); margin-bottom: 10px; }
+        .section-subtitle { text-align: center; color: var(--leaf-deep-teal); font-size: 0.95rem; margin-bottom: 60px; font-style: italic; font-family: 'Playfair Display', serif; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        
+        .brand-card {
+            background: var(--white); padding: 40px 30px; border-radius: 4px; border: 1px solid rgba(47, 92, 71, 0.08);
+            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s ease;
+        }
+        .brand-card:hover { transform: translateY(-5px); border-color: var(--lotus-vibrant-pink); box-shadow: 0 15px 35px rgba(228, 95, 136, 0.04); }
+        .sub-tag { color: var(--leaf-deep-teal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
+        .brand-card h3 { font-size: 1.6rem; color: var(--primary-text); margin: 10px 0 15px 0; }
+        .brand-card p { color: #4A524D; line-height: 1.7; font-size: 0.9rem; margin-bottom: 15px; }
+        
+        .placeholder-img {
+            width: 100%; height: 220px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center;
+            justify-content: center; color: #7A857D; font-size: 0.8rem; letter-spacing: 0.1em; border-radius: 2px; border: 1px dashed rgba(228, 95, 136, 0.15);
+        }
+
+        /* Dual Button Actions */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .action-btn {
+            width: 100%; padding: 12px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s;
+        }
+        .btn-amazon { background: var(--leaf-deep-teal); color: var(--white); }
+        .btn-amazon:hover { background: var(--primary-text); }
+        .btn-whatsapp { background: transparent; color: var(--primary-text); border: 1px solid rgba(36,41,37,0.2); }
+        .btn-whatsapp:hover { border-color: var(--lotus-vibrant-pink); color: var(--lotus-vibrant-pink); }
+
+        /* Our Story Banner */
+        .story-section { padding: 80px 8%; background: var(--white); border-top: 1px solid rgba(47, 92, 71, 0.03); }
+        .story-content { max-width: 750px; margin: 0 auto; text-align: center; }
+        .story-content h2 { font-size: 2.4rem; color: var(--primary-text); margin-bottom: 25px; }
+        .story-content p { font-size: 1.05rem; color: #4A524D; line-height: 1.8; margin-bottom: 20px; text-align: justify; }
+        .story-content p.highlighted-text {
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem;
+            color: var(--lotus-vibrant-pink); margin: 25px 0; text-align: center;
+        }
+
+        /* Brand Architecture Map */
+        .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
+        .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
+
+        /* Footer Layout */
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(47, 92, 71, 0.05); background: var(--white); }
+        .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .footer-links a { color: #7A857D; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
+        .footer-links a:hover { color: var(--lotus-vibrant-pink); }
+
+        /* 📱 Mobile Responsiveness */
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--bg-canvas); padding: 20px; border-bottom: 1px solid rgba(47, 92, 71, 0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 12px 0; text-align: center; width: 100%; }
+            .grid-layout { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your checkout message!')">
+        <span>10%</span>OFF
+    </div>
+
+    <nav>
+        <a href="index.html" class="logo serif-premium">VEDA LIVING <span>INDIA</span></a>
+        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="navLinks">
+            <a href="#our-products">Our Products</a>
+            <a href="#our-story">Our Story</a>
+            <a href="journal.html">Journal</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <span class="tagline">Balance with Love</span>
+        <h1 class="serif-premium pulse-slow">Your Body Was Never Meant to Grow on <em>Synthetic Chemicals</em></h1>
+    </section>
+
+    <section id="our-products" class="products-section">
+        <h2 class="section-title serif-premium">The Veda Registry</h2>
+        <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
+        
+        <div class="grid-layout">
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>16 Herbs & 6 Oils</h3>
+                    <p>Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base.</p>
+                    <div class="placeholder-img">[ 16 Herbs Infusion Product ]</div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%2016%20Herbs%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>Keshvilas Oil</h3>
+                    <p>A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components.</p>
+                    <div class="placeholder-img">[ Keshvilas Hair Oil ]</div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%20Keshvilas%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>Bhringraj Oil</h3>
+                    <p>Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances.</p>
+                    <div class="placeholder-img">[ Pure Bhringraj Infusion ]</div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%20Bhringraj%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sub-brands-map">
+            <h4>🪷 One Umbrella. Two Conscious Journeys.</h4>
+            <p><strong>Veda Living India</strong> protects your daily life framework through two channels. <strong>Veda Ayurveda</strong> currently features our 100% chemical-free hair infusions. Our secondary path, <strong>Veda</strong>, will introduce pure, preservative-free Indian kitchen elements and kitchen spices with completely raw natural shelf lives as soon as our strict sourcing records are completely processed.</p>
+        </div>
+    </section>
+
+    <section id="our-story" class="story-section">
+        <div class="story-content">
+            <h2 class="serif-premium">Our Story</h2>
+            <p>In a world running after 'fast living,' we have normalized a dangerous truth—absorbing and consuming synthetic chemicals from morning till night, only to later spend our savings managing lifestyle diseases with allopathic drugs. Having a background in Bioinformatics and Drug Designing, I closely saw how even modern medicines trace their foundations back to natural plants. But when chemicals are synthetically altered, they silently store inside our body, slowly disrupting our natural balance.</p>
+            <p class="highlighted-text">"Veda Living India wasn't born out of a commercial trend; it was born to remind us that our bodies were never meant to grow on synthetic chemicals."</p>
+            <p>We believe Slow Living isn't a premium luxury or a modern choice—it is the only real way to truly live life, not just pass through it. It is about returning to mindful eating, early mornings, and inner peace. Every element shared here is an honest attempt to live in absolute harmony with your body, your family, and the earth under our beautiful anchoring tagline: <strong>Balance with Love</strong>.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>VEDA LIVING INDIA &copy; 2026 | Balance with Love.</p>
+        <div class="footer-links">
+            <a href="journal.html">Journal</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+    </script>
+</body>
+</html>
