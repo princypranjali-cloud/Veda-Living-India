@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veda Living India | Balance with Love</title>
-    <!-- ✨ Font Awesome for Crisp & Clean Professional Icons -->
+    <!-- ✨ Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
-        /* 🪷 Beautiful True Lotus Palette */
+        /* 🪷 True Lotus Palette */
         :root {
             --bg-canvas: #FCFAF7;       
             --white: #FFFFFF;
@@ -24,14 +24,14 @@
         body { background-color: var(--bg-canvas); color: var(--primary-text); overflow-x: hidden; scroll-behavior: smooth; position: relative; }
         .serif-premium { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.01em; }
 
-        /* 🍃 Cute Breathing Slow-Pulse Animation */
+        /* Slow-Pulse Animation */
         .pulse-slow { animation: slowBreathe 4s infinite ease-in-out; }
         @keyframes slowBreathe {
             0%, 100% { opacity: 0.9; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.02); }
         }
 
-        /* 🏷️ 10% First Purchase Floating Bubble */
+        /* Floating Discount Bubble */
         .discount-bubble {
             position: fixed; bottom: 30px; right: 30px; background: var(--lotus-vibrant-pink);
             color: var(--white); width: 85px; height: 85px; border-radius: 50%;
@@ -43,16 +43,9 @@
         .discount-bubble span { font-size: 1.1rem; line-height: 1; margin-bottom: 2px; }
         @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* 🌸 Cute Falling Petals Container */
-        #petal-container {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 99; overflow: hidden;
-        }
-        .petal {
-            position: absolute; background-color: var(--lotus-soft-petal);
-            border-radius: 150% 0 150% 150%; 
-            opacity: 0.6; animation: fall linear infinite;
-        }
+        /* Falling Petals */
+        #petal-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99; overflow: hidden; }
+        .petal { position: absolute; background-color: var(--lotus-soft-petal); border-radius: 150% 0 150% 150%; opacity: 0.6; animation: fall linear infinite; }
         @keyframes fall {
             0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
             10% { opacity: 0.6; }
@@ -60,37 +53,19 @@
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ✨ Smooth Scroll Fade-In Effect CSS */
-        .reveal {
-            position: relative; opacity: 0; transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* 🧚‍♀️ DRAGGABLE VIRTUAL LIVING GUIDE CONTAINER */
-        .guide-wrapper {
-            position: fixed; bottom: 35px; left: 35px; display: flex; align-items: flex-end; gap: 15px; z-index: 1000;
-            user-select: none;
-        }
+        /* Draggable Guide Box (No X Button) */
+        .guide-wrapper { position: fixed; bottom: 35px; left: 35px; display: flex; align-items: flex-end; gap: 15px; z-index: 1000; user-select: none; }
         .guide-avatar {
             width: 70px; height: 70px; background: #FFF0F3; border: 3px solid var(--leaf-deep-teal);
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            cursor: grab; box-shadow: 0 10px 25px rgba(47,92,71,0.2);
-            transition: background 0.3s, border-color 0.3s; position: relative;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: grab;
+            box-shadow: 0 10px 25px rgba(47,92,71,0.2); transition: background 0.3s, border-color 0.3s; position: relative;
         }
         .guide-avatar:active { cursor: grabbing; }
         .guide-avatar i { font-size: 2.2rem; color: var(--lotus-vibrant-pink); }
-        .guide-avatar:hover { background: #FCD9E2; border-color: var(--lotus-vibrant-pink); }
-
-        .guide-avatar::after {
-            content: ''; position: absolute; width: 12px; height: 12px; background: var(--pod-bright-green);
-            border-radius: 50%; bottom: 2px; right: 2px; border: 2px solid var(--white); z-index: 10;
-        }
         .guide-bubble {
             background: var(--white); border: 1px solid rgba(47,92,71,0.15); padding: 15px 20px;
             border-radius: 16px 16px 16px 4px; max-width: 250px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            font-size: 0.82rem; line-height: 1.5; color: var(--primary-text); display: none;
-            pointer-events: none;
+            font-size: 0.82rem; line-height: 1.5; color: var(--primary-text); display: none; pointer-events: none;
         }
 
         /* Navigation */
@@ -101,146 +76,147 @@
         }
         .logo { font-size: 1.35rem; letter-spacing: 0.12em; color: var(--leaf-deep-teal); text-decoration: none; }
         .logo span { color: var(--lotus-vibrant-pink); }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a {
-            margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 0.12em; position: relative; padding-bottom: 4px; font-weight: 500;
-        }
+        .nav-links a { margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; }
         .nav-links a:hover { color: var(--lotus-vibrant-pink); }
 
         /* Hero */
-        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
+        .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
         .tagline { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--leaf-deep-teal); margin-bottom: 20px; font-weight: 600; }
         .hero h1 { font-size: 3.5rem; color: var(--primary-text); line-height: 1.25; max-width: 850px; margin-bottom: 30px; }
         .hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--lotus-vibrant-pink); }
 
-        /* Product Section Layout */
+        /* Grid & Cards */
         .products-section { padding: 60px 8%; position: relative; }
         .section-title { text-align: center; font-size: 2.4rem; color: var(--primary-text); margin-bottom: 10px; }
         .section-subtitle { text-align: center; color: var(--leaf-deep-teal); font-size: 0.95rem; margin-bottom: 60px; font-style: italic; font-family: 'Playfair Display', serif; }
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
         
-        /* 🏷️ Advanced Brand Card with Info Tabs */
         .brand-card {
             background: var(--white); padding: 35px 25px; border-radius: 6px; border: 1px solid rgba(47, 92, 71, 0.08);
-            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
         }
-        .brand-card:hover { 
-            transform: translateY(-8px); 
-            border-color: var(--lotus-vibrant-pink); 
-            box-shadow: 0 20px 40px rgba(228, 95, 136, 0.08); 
-        }
+        .brand-card:hover { transform: translateY(-8px); border-color: var(--lotus-vibrant-pink); box-shadow: 0 20px 40px rgba(228, 95, 136, 0.08); }
         .sub-tag { color: var(--leaf-deep-teal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
         .brand-card h3 { font-size: 1.6rem; color: var(--primary-text); margin: 8px 0 12px 0; }
         .brand-card p { color: #4A524D; line-height: 1.6; font-size: 0.88rem; margin-bottom: 15px; }
         
-        /* Rich Interactive Tabs CSS */
-        .product-tabs { display: flex; border-bottom: 1px solid #ECEAE6; margin-bottom: 15px; gap: 10px; }
+        /* Tabs Framework */
+        .product-tabs { display: flex; border-bottom: 1px solid #ECEAE6; margin-bottom: 15px; gap: 15px; }
         .tab-btn {
             background: none; border: none; padding: 6px 0; font-size: 0.78rem; text-transform: uppercase;
             letter-spacing: 0.05em; font-weight: 600; color: #7A857D; cursor: pointer; position: relative;
-            transition: color 0.3s;
         }
         .tab-btn.active { color: var(--lotus-vibrant-pink); }
-        .tab-btn.active::after {
-            content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: var(--lotus-vibrant-pink);
-        }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: var(--lotus-vibrant-pink); }
         .tab-content { font-size: 0.85rem; line-height: 1.6; color: #5A625D; min-height: 85px; display: none; }
         .tab-content.active { display: block; }
 
-        /* Embedded Tracker Box Accent */
-        .tracker-box { background: #FAF8F5; border-left: 3px solid var(--pod-bright-green); padding: 8px 12px; font-size: 0.8rem; border-radius: 2px; }
-        .tracker-box span { display: block; font-family: monospace; color: var(--primary-text); margin-top: 2px; }
+        /* ✨ SIMPLIFIED CLEAN MINDFUL RITUAL TRACKER Box */
+        .ritual-tracker-box {
+            background: #FAF9F6; border: 1px solid rgba(47, 92, 71, 0.08); padding: 12px 15px; border-radius: 6px;
+        }
+        .tracker-row { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; margin-bottom: 6px; color: #3A403C; }
+        .tracker-row:last-child { margin-bottom: 0; }
+        .tracker-row i { color: var(--pod-bright-green); font-size: 0.9rem; }
+        .tracker-row .label { font-weight: 600; color: var(--leaf-deep-teal); }
 
         .placeholder-img {
             width: 100%; height: 200px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center;
-            justify-content: center; color: #7A857D; font-size: 0.8rem; letter-spacing: 0.1em; border-radius: 4px; border: 1px dashed rgba(228, 95, 136, 0.15);
-            transition: 0.3s; overflow: hidden;
+            justify-content: center; color: #7A857D; font-size: 0.8rem; border-radius: 4px; border: 1px dashed rgba(228, 95, 136, 0.15);
         }
-        .brand-card:hover .placeholder-img { background: var(--white); border-color: var(--lotus-vibrant-pink); }
 
-        /* Buttons & Super Cool Shimmer */
+        /* Action Buttons styling */
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .action-btn {
             width: 100%; padding: 13px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; 
-            transition: 0.3s; position: relative; overflow: hidden;
+            letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s;
         }
-        .action-btn::after {
-            content: ''; position: absolute; top: 0; left: -50%; width: 30%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg); transition: 0.75s;
-        }
-        .action-btn:hover::after { left: 120%; }
-
         .btn-amazon { background: var(--leaf-deep-teal); color: var(--white); }
         .btn-amazon:hover { background: var(--primary-text); }
-        .btn-bringhome { background: var(--lotus-vibrant-pink); color: var(--white); font-weight: 700; box-shadow: 0 4px 15px rgba(228,95,136,0.15); }
-        .btn-bringhome:hover { background: #cf4f75; transform: scale(1.01); }
+        .btn-bringhome { background: var(--lotus-vibrant-pink); color: var(--white); font-weight: 700; }
+        .btn-bringhome:hover { background: #cf4f75; }
+
+        /* 🛍️ VIRTUAL BRING HOME NEW PAGE (DYNAMIC SLIDE MODAL) */
+        .product-page-layer {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 500px; height: 100vh;
+            background: var(--white); box-shadow: -10px 0 40px rgba(0,0,0,0.1); z-index: 10000;
+            transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column;
+        }
+        .product-page-layer.active { right: 0; }
+        
+        .layer-header { padding: 25px; border-bottom: 1px solid #F0EDE9; display: flex; align-items: center; gap: 15px; }
+        .back-layer-btn { background: none; border: none; font-size: 1.1rem; color: var(--primary-text); cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
+        .back-layer-btn:hover { color: var(--lotus-vibrant-pink); }
+        
+        .layer-body { padding: 30px; overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 20px; }
+        .layer-img-container { width: 100%; height: 280px; background: #FCFAF7; border-radius: 8px; border: 1px dashed rgba(47,92,71,0.1); display: flex; align-items: center; justify-content: center; color: #A0A8A3; }
+        .layer-title-meta h2 { font-size: 1.8rem; color: var(--primary-text); margin-bottom: 5px; }
+        .layer-price { font-size: 1.4rem; color: var(--leaf-deep-teal); font-weight: 700; margin: 10px 0; }
+        .layer-description { font-size: 0.9rem; line-height: 1.7; color: #4A524D; }
+        
+        /* Interactive Bag Matrix Buttons */
+        .bag-controls-box { background: #FCFAF7; padding: 20px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.03); margin-top: 10px; }
+        .btn-add-to-bag {
+            width: 100%; padding: 15px; background: var(--primary-text); color: var(--white); border: none; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; cursor: pointer; transition: 0.3s; margin-bottom: 12px;
+        }
+        .btn-add-to-bag:hover { background: var(--leaf-deep-teal); }
+        .btn-add-to-bag.added { background: var(--pod-bright-green); pointer-events: none; }
+        
+        .btn-checkout-final {
+            width: 100%; padding: 15px; background: var(--lotus-vibrant-pink); color: var(--white); border: none; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; cursor: pointer; display: none; text-align: center; text-decoration: none;
+        }
+        .btn-checkout-final:hover { background: #cf4f75; }
 
         /* Story Banner */
-        .story-section { padding: 80px 8%; background: var(--white); border-top: 1px solid rgba(47, 92, 71, 0.03); }
+        .story-section { padding: 80px 8%; background: var(--white); }
         .story-content { max-width: 750px; margin: 0 auto; text-align: center; }
         .story-content h2 { font-size: 2.4rem; color: var(--primary-text); margin-bottom: 25px; }
         .story-content p { font-size: 1.05rem; color: #4A524D; line-height: 1.8; margin-bottom: 20px; text-align: justify; }
-        .story-content p.highlighted-text {
-            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem;
-            color: var(--lotus-vibrant-pink); margin: 25px 0; text-align: center;
-        }
+        .story-content p.highlighted-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem; color: var(--lotus-vibrant-pink); margin: 25px 0; }
 
         .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
         .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
 
-        /* 🪷 PROFESSIONAL FOOTER DESIGN */
-        footer {
-            background: #FFFFFF; border-top: 1px solid rgba(47, 92, 71, 0.08);
-            padding: 70px 8% 30px 8%; color: var(--primary-text);
-        }
-        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; text-align: left; }
-        .footer-col h3 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.08em; }
+        /* Footer */
+        footer { background: #FFFFFF; border-top: 1px solid rgba(47, 92, 71, 0.08); padding: 70px 8% 30px 8%; color: var(--primary-text); }
+        .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+        .footer-col h3 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 20px; text-transform: uppercase; }
         .footer-col p { font-size: 0.88rem; color: #4A524D; line-height: 1.6; margin-bottom: 12px; }
         
         .social-links-group { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
-        .social-link-item { display: inline-flex; align-items: center; text-decoration: none; color: #4A524D; font-size: 0.88rem; font-weight: 500; transition: all 0.3s ease; }
-        .social-link-item i { font-size: 1.1rem; width: 24px; text-align: center; margin-right: 10px; transition: transform 0.3s ease; }
+        .social-link-item { display: inline-flex; align-items: center; text-decoration: none; color: #4A524D; font-size: 0.88rem; font-weight: 500; transition: 0.3s; }
+        .social-link-item i { font-size: 1.1rem; width: 24px; text-align: center; margin-right: 10px; }
         .social-link-item.link-whatsapp:hover { color: #25D366; }
-        .social-link-item.link-whatsapp:hover i { transform: scale(1.15); }
         .social-link-item.link-catalog:hover { color: var(--leaf-deep-teal); }
-        .social-link-item.link-catalog:hover i { transform: scale(1.15); }
         .social-link-item.link-instagram:hover { color: #E1306C; }
-        .social-link-item.link-instagram:hover i { transform: scale(1.15); }
 
         .cert-badge-box { background: #FCFAF7; border: 1px dashed rgba(47, 92, 71, 0.15); padding: 12px 16px; border-radius: 4px; margin-bottom: 12px; }
         .cert-badge-box p { margin-bottom: 0; font-size: 0.8rem; font-family: monospace; color: #5A655F; }
         .footer-bottom { border-top: 1px solid rgba(47, 92, 71, 0.06); padding-top: 25px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
         .footer-bottom p { font-size: 0.8rem; color: #7A857D; }
-        .legal-links { display: flex; gap: 25px; }
-        .legal-links a { color: #7A857D; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s; }
-        .legal-links a:hover { color: var(--lotus-vibrant-pink); }
 
         @media (max-width: 768px) {
             .grid-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.3rem; }
-            .guide-wrapper { bottom: 20px; left: 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 35px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .legal-links { justify-content: center; }
+            .product-page-layer { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🌸 Floating Petals Element -->
     <div id="petal-container"></div>
 
-    <!-- 🧚‍♀️ DRAGGABLE & FREE MOVING VIRTUAL LOTUS GUIDE (NO CLOSE BUTTON) -->
+    <!-- Draggable Guide (No close button junk) -->
     <div class="guide-wrapper" id="draggable-guide-container">
         <div class="guide-avatar" id="veda-guide">
             <i class="fas fa-spa"></i>
         </div>
         <div class="guide-bubble" id="guide-speech">
-            Hello dear seeker! ✨ Drag me anywhere on the screen if I block your text! Click me for mindful daily reflections.
+            Hello dear seeker! ✨ Drag me anywhere on the screen if I block your view.
         </div>
     </div>
 
@@ -253,9 +229,6 @@
         <div class="nav-links">
             <a href="#our-products">Our Products</a>
             <a href="#our-story">Our Story</a>
-            <a href="journal.html">Journal</a>
-            <a href="terms.html">Terms</a>
-            <a href="privacy.html">Privacy</a>
         </div>
     </nav>
 
@@ -265,7 +238,7 @@
     </section>
 
     <!-- 🪷 THE AUTHENTIC 3-PRODUCT AYURVEDA REGISTRY -->
-    <section id="our-products" class="products-section reveal">
+    <section id="our-products" class="products-section">
         <h2 class="section-title serif-premium">The Veda Registry</h2>
         <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
         
@@ -278,34 +251,37 @@
                     <p>Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base.</p>
                     
                     <div class="placeholder-img">
-                        <div style="text-align: center; padding: 20px; font-size: 0.8rem; color:#888;"><i class="fas fa-oil-can" style="font-size:2.5rem; color:var(--lotus-vibrant-pink); margin-bottom:10px; display:block;"></i>[ 16 Herbs Live Infusion Image ]</div>
+                        <div style="text-align: center;"><i class="fas fa-oil-can" style="font-size:2rem; color:var(--lotus-vibrant-pink); margin-bottom:10px; display:block;"></i>[ 16 Herbs Live Infusion Image ]</div>
                     </div>
 
-                    <!-- Interactive Specification Sheets -->
                     <div class="product-tabs">
                         <button class="tab-btn active" onclick="switchTab(this, 'p1-feat')">Features</button>
                         <button class="tab-btn" onclick="switchTab(this, 'p1-use')">How To Use</button>
-                        <button class="tab-btn" onclick="switchTab(this, 'p1-track')">Tracker</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'p1-track')">Ritual Tracker</button>
                     </div>
 
                     <div id="p1-feat" class="tab-content active">
                         * Authentic Taila Pak Vidhi extraction.<br>
                         * Zero liquid chemical isolates or artificial scents.<br>
-                        * Prevents root scaling & standard split damage organically.
+                        * Prevents root scaling organically.
                     </div>
                     <div id="p1-use" class="tab-content">
-                        Apply 8-10 drops directly onto clean dry scalp. Massage gently in clockwise circular motion for 5 minutes. Leave overnight; rinse gently.
+                        Apply 8-10 drops directly onto clean dry scalp. Massage gently in clockwise circular motion for 5 minutes.
                     </div>
+                    
+                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p1-track" class="tab-content">
-                        <div class="tracker-box">
-                            🌿 <strong>Batch Status: Passed</strong>
-                            <span>No: V-16H-0526<br>Base: Fresh White Sesame<br>Purity Ratio: Pure Raw Infusion</span>
+                        <div class="ritual-tracker-box">
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Method:</span> Taila Pak Vidhi Infusion</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Base:</span> Cold-pressed Sesame Base</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Additives:</span> Pure Botanical Extracts Only</div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%2016%20Herbs%20%26%206%20Oils%20Hair%20Infusion." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
+                    <!-- Paste your actual Amazon Product Link inside href="" -->
+                    <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_1" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <button class="action-btn btn-bringhome" onclick="openProductPage('16 Herbs & 6 Oils Hair Infusion', 'Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base. Free from artificial base thinners, petrochemical mineral oils, and paraffin frameworks.', '[ 16 Herbs Live Infusion Image ]', 'Hi! I want to complete my checkout for the 16 Herbs & 6 Oils Hair Infusion.')">Bring Home</button>
                 </div>
             </div>
 
@@ -317,37 +293,41 @@
                     <p>A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components.</p>
                     
                     <div class="placeholder-img">
-                        <div style="text-align: center; padding: 20px; font-size: 0.8rem; color:#888;"><i class="fas fa-mortar-pestle" style="font-size:2.5rem; color:var(--leaf-deep-teal); margin-bottom:10px; display:block;"></i>[ Keshvilas Hair Oil Live Image ]</div>
+                        <div style="text-align: center;"><i class="fas fa-mortar-pestle" style="font-size:2rem; color:var(--leaf-deep-teal); margin-bottom:10px; display:block;"></i>[ Keshvilas Hair Oil Live Image ]</div>
                     </div>
 
                     <div class="product-tabs">
                         <button class="tab-btn active" onclick="switchTab(this, 'p2-feat')">Features</button>
                         <button class="tab-btn" onclick="switchTab(this, 'p2-use')">How To Use</button>
-                        <button class="tab-btn" onclick="switchTab(this, 'p2-track')">Tracker</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'p2-track')">Ritual Tracker</button>
                     </div>
 
                     <div id="p2-feat" class="tab-content active">
                         * Processed natively in solid aluminum vessels.<br>
                         * Includes dynamic natural cooling root herbs.<br>
-                        * Deep structural balance for everyday modern stressors.
+                        * Deep structural balance for modern stressors.
                     </div>
                     <div id="p2-use" class="tab-content">
-                        Warm a small quantity between your palms. Apply uniformly from your hair roots right down to tips. Best suited for deep weekend tracking therapy.
+                        Warm a small quantity between your palms. Apply uniformly from your hair roots right down to tips.
                     </div>
+                    
+                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p2-track" class="tab-content">
-                        <div class="tracker-box">
-                            🥛 <strong>Batch Status: Certified</strong>
-                            <span>No: KV-OIL-0941<br>Base: Fresh Dairy Infused Base<br>Synthetics Content: Zero Alpha Isolates</span>
+                        <div class="ritual-tracker-box">
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Vessel:</span> Controlled Aluminum Processing</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Composition:</span> 14 Botanical Herbs + Whole Dairy</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Scent Profile:</span> Organic Raw Herb Aroma</div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Keshvilas%20Hair%20Oil." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
+                    <!-- Paste your actual Amazon Product Link inside href="" -->
+                    <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_2" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <button class="action-btn btn-bringhome" onclick="openProductPage('Keshvilas Hair Oil', 'A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components. Best suited for deep weekend mindfulness tracking therapy.', '[ Keshvilas Hair Oil Live Image ]', 'Hi! I want to complete my checkout for the Keshvilas Hair Oil.')">Bring Home</button>
                 </div>
             </div>
 
-            <!-- PRODUCT 3 CARD (RESTORED TO PURE BHRINGRAJ) -->
+            <!-- PRODUCT 3 CARD -->
             <div class="brand-card" id="prod-3">
                 <div>
                     <span class="sub-tag">Veda Ayurveda</span>
@@ -355,13 +335,13 @@
                     <p>Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances.</p>
                     
                     <div class="placeholder-img">
-                        <div style="text-align: center; padding: 20px; font-size: 0.8rem; color:#888;"><i class="fas fa-leaf" style="font-size:2.5rem; color:var(--pod-bright-green); margin-bottom:10px; display:block;"></i>[ Pure Bhringraj Infusion Live Image ]</div>
+                        <div style="text-align: center;"><i class="fas fa-leaf" style="font-size:2rem; color:var(--pod-bright-green); margin-bottom:10px; display:block;"></i>[ Pure Bhringraj Infusion Live Image ]</div>
                     </div>
 
                     <div class="product-tabs">
                         <button class="tab-btn active" onclick="switchTab(this, 'p3-feat')">Features</button>
                         <button class="tab-btn" onclick="switchTab(this, 'p3-use')">How To Use</button>
-                        <button class="tab-btn" onclick="switchTab(this, 'p3-track')">Tracker</button>
+                        <button class="tab-btn" onclick="switchTab(this, 'p3-track')">Ritual Tracker</button>
                     </div>
 
                     <div id="p3-feat" class="tab-content active">
@@ -370,29 +350,54 @@
                         * Free from artificial base thinners and paraffin.
                     </div>
                     <div id="p3-use" class="tab-content">
-                        Part hair sections cleanly. Apply gently onto areas needing deep root activation. Use three times a week for sustainable organic hair density.
+                        Part hair sections cleanly. Apply gently onto areas needing deep root activation. Use three times a week.
                     </div>
+                    
+                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p3-track" class="tab-content">
-                        <div class="tracker-box">
-                            ☀️ <strong>Batch Status: Verified</strong>
-                            <span>No: BR-INF-1104<br>Sourcing Track: Direct Farm Roots<br>Adulterants: None Detected</span>
+                        <div class="ritual-tracker-box">
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Sourcing:</span> Direct Pure Farm Roots</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Concentration:</span> Single Herb Focus</div>
+                            <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Paraffin & Minerals:</span> Absolutely Zero</div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Pure%20Bhringraj%20Oil." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
+                    <!-- Paste your actual Amazon Product Link inside href="" -->
+                    <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_3" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <button class="action-btn btn-bringhome" onclick="openProductPage('Bhringraj Hair Oil', 'Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances or chemical thinners.', '[ Pure Bhringraj Infusion Live Image ]', 'Hi! I want to complete my checkout for the Pure Bhringraj Oil.')">Bring Home</button>
                 </div>
             </div>
         </div>
 
         <div class="sub-brands-map">
             <h4>🪷 One Umbrella. Two Conscious Journeys.</h4>
-            <p><strong>Veda Living India</strong> protects your daily life framework through two channels. <strong>Veda Ayurveda</strong> currently features our chemical-free hair infusions. Our secondary path, <strong>Veda</strong>, will introduce pure, preservative-free Indian kitchen elements and kitchen spices with completely raw natural shelf lives as soon as our strict sourcing records are completely processed.</p>
+            <p><strong>Veda Living India</strong> protects your daily life framework through two channels. <strong>Veda Ayurveda</strong> currently features our chemical-free hair infusions. Our secondary path, <strong>Veda</strong>, will introduce pure, preservative-free Indian kitchen elements and kitchen spices with completely raw natural shelf lives as soon as our strict sourcing records are processed.</p>
         </div>
     </section>
 
-    <section id="our-story" class="story-section reveal">
+    <!-- 🛍️ NEW DYNAMIC PRODUCT PAGE LAYER (SLIDES FROM RIGHT ON BRING HOME CLICK) -->
+    <div class="product-page-layer" id="dynamic-product-view">
+        <div class="layer-header">
+            <button class="back-layer-btn" onclick="closeProductPage()"><i class="fas fa-arrow-left"></i> Back to Catalog</button>
+        </div>
+        <div class="layer-body">
+            <div class="layer-img-container" id="layer-product-image">[ Product Image ]</div>
+            <div class="layer-title-meta">
+                <span class="sub-tag">Veda Ayurveda</span>
+                <h2 id="layer-product-title">Product Title</h2>
+                <div class="layer-price">Handmade Everyday Care</div>
+            </div>
+            <p class="layer-description" id="layer-product-desc">Detailed descriptions appear natively here.</p>
+            
+            <div class="bag-controls-box">
+                <button class="btn-add-to-bag" id="add-to-bag-btn" onclick="handleAddToBag()">Add to Bag</button>
+                <a href="" id="checkout-final-btn" class="btn-checkout-final" target="_blank">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <section id="our-story" class="story-section">
         <div class="story-content">
             <h2 class="serif-premium">Our Story</h2>
             <p>In a world running after 'fast living,' we have normalized a dangerous truth—absorbing and consuming synthetic chemicals from morning till night, only to later spend our savings managing lifestyle diseases with allopathic drugs. Having a background in Bioinformatics and Drug Designing, I closely saw how even modern medicines trace their foundations back to natural plants. But when chemicals are synthetically altered, they silently store inside our body, slowly disrupting our natural balance.</p>
@@ -401,7 +406,6 @@
         </div>
     </section>
 
-    <!-- 🪷 ALIGNED FOOTER -->
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -412,50 +416,29 @@
             
             <div class="footer-col">
                 <h3>Connect With Us</h3>
-                <p>Feel free to text us for recommendations, bulk custom orders, or simple guidance.</p>
                 <div class="social-links-group">
-                    <a href="https://wa.me/919235052087" target="_blank" class="social-link-item link-whatsapp">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Direct Chat
-                    </a>
-                    <a href="https://wa.me/c/919235052087" target="_blank" class="social-link-item link-catalog">
-                        <i class="fas fa-store"></i> View Our WhatsApp Catalog
-                    </a>
-                    <a href="https://www.instagram.com/vedalivingindia/" target="_blank" class="social-link-item link-instagram">
-                        <i class="fab fa-instagram"></i> @vedalivingindia
-                    </a>
+                    <a href="https://wa.me/919235052087" target="_blank" class="social-link-item link-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp Direct Chat</a>
+                    <a href="https://wa.me/c/919235052087" target="_blank" class="social-link-item link-catalog"><i class="fas fa-store"></i> View WhatsApp Catalog</a>
+                    <a href="https://www.instagram.com/vedalivingindia/" target="_blank" class="social-link-item link-instagram"><i class="fab fa-instagram"></i> @vedalivingindia</a>
                 </div>
             </div>
 
             <div class="footer-col">
                 <h3>Trust & Registrations</h3>
-                <div class="cert-badge-box">
-                    <p><strong>FSSAI LICENSE NUMBER</strong></p>
-                    <p>22722147000060</p>
-                </div>
-                <div class="cert-badge-box">
-                    <p><strong>GSTIN REGISTRATION</strong></p>
-                    <p>09KVTPK0261D1ZA</p>
-                </div>
-                <p style="font-size: 0.78rem; color: #7A857D; font-style: italic;">Processed cleanly under parent manufacturer specifications.</p>
+                <div class="cert-badge-box"><p><strong>FSSAI LICENSE NUMBER</strong></p><p>22722147000060</p></div>
+                <div class="cert-badge-box"><p><strong>GSTIN REGISTRATION</strong></p><p>09KVTPK0261D1ZA</p></div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>VEDA LIVING INDIA &copy; 2026 | Balance with Love.</p>
-            <div class="legal-links">
-                <a href="journal.html">Journal</a>
-                <a href="terms.html">Terms of Service</a>
-                <a href="privacy.html">Privacy Policy</a>
-            </div>
         </div>
     </footer>
 
     <script>
-        // 🌸 Falling Petals System
+        // Falling Petals
         const container = document.getElementById('petal-container');
-        const maxPetals = 15;
         function createPetal() {
-            if (container.children.length >= maxPetals) return;
+            if (container.children.length >= 12) return;
             const petal = document.createElement('div');
             petal.classList.add('petal');
             const size = Math.random() * 12 + 6; 
@@ -463,103 +446,12 @@
             petal.style.height = `${size}px`;
             petal.style.left = `${Math.random() * 100}vw`;
             petal.style.animationDuration = `${Math.random() * 5 + 6}s`; 
-            petal.style.delay = `${Math.random() * 5}s`;
             container.appendChild(petal);
             setTimeout(() => { petal.remove(); }, 11000);
         }
-        setInterval(createPetal, 800);
+        setInterval(createPetal, 1000);
 
-        // Scroll Fade-in
-        function revealSections() {
-            const reveals = document.querySelectorAll('.reveal');
-            reveals.forEach(windowSection => {
-                const windowHeight = window.innerHeight;
-                const elementTop = windowSection.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) windowSection.classList.add('active');
-            });
-        }
-        window.addEventListener('scroll', revealSections);
-        window.addEventListener('load', revealSections);
-
-        // 🪷 ADVANCED DRAGGABLE LOGIC FOR LOTUS GUIDE (CLEAN NO-BUTTON MOUSE/TOUCH TRACKING)
-        const dragInstance = document.getElementById('draggable-guide-container');
-        const avatarClickable = document.getElementById('veda-guide');
-        const speechBubble = document.getElementById('guide-speech');
-        
-        let isDragging = false;
-        let offsetX, offsetY;
-        let hasMovedSignificant = false;
-
-        avatarClickable.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            hasMovedSignificant = false;
-            offsetX = e.clientX - dragInstance.getBoundingClientRect().left;
-            offsetY = e.clientY - dragInstance.getBoundingClientRect().top;
-            dragInstance.style.bottom = 'auto'; 
-            dragInstance.style.left = dragInstance.getBoundingClientRect().left + 'px';
-            dragInstance.style.top = dragInstance.getBoundingClientRect().top + 'px';
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            hasMovedSignificant = true;
-            speechBubble.style.display = 'none'; 
-            
-            let newX = e.clientX - offsetX;
-            let newY = e.clientY - offsetY;
-            
-            newX = Math.max(10, Math.min(newX, window.innerWidth - 90));
-            newY = Math.max(10, Math.min(newY, window.innerHeight - 90));
-            
-            dragInstance.style.left = `${newX}px`;
-            dragInstance.style.top = `${newY}px`;
-        });
-
-        document.addEventListener('mouseup', () => { isDragging = false; });
-
-        // Touch Support for Mobile Dragging
-        avatarClickable.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            hasMovedSignificant = false;
-            const touch = e.touches[0];
-            offsetX = touch.clientX - dragInstance.getBoundingClientRect().left;
-            offsetY = touch.clientY - dragInstance.getBoundingClientRect().top;
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            hasMovedSignificant = true;
-            speechBubble.style.display = 'none';
-            const touch = e.touches[0];
-            let newX = touch.clientX - offsetX;
-            let newY = touch.clientY - offsetY;
-            newX = Math.max(10, Math.min(newX, window.innerWidth - 90));
-            newY = Math.max(10, Math.min(newY, window.innerHeight - 90));
-            dragInstance.style.left = `${newX}px`;
-            dragInstance.style.top = `${newY}px`;
-        });
-
-        document.addEventListener('touchend', () => { isDragging = false; });
-
-        // Trigger speech logic on click ONLY if not dragged
-        avatarClickable.addEventListener('click', () => {
-            if(hasMovedSignificant) return;
-            
-            const randomQuotes = [
-                "🌿 Organic lifestyle is not a trend, it is a return to home.",
-                "🌸 Tip: Massaging Keshvilas oil slowly before sleep boosts mindfulness!",
-                "✨ Remember: Balance with Love, everyday.",
-                "💧 Did you drink water today? Slow living starts with hydration!",
-                "🪷 Drag me anywhere cleanly if I ever block your sight!"
-            ];
-            speechBubble.style.display = 'block';
-            speechBubble.innerText = randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
-        });
-
-        // Auto open welcome text early
-        setTimeout(() => { if(!hasMovedSignificant) speechBubble.style.display = 'block'; }, 2500);
-
-        // 🏷️ PRODUCT TABS NAVIGATION FUNCTION
+        // Product Tabs Engine
         function switchTab(button, contentId) {
             const card = button.closest('.brand-card');
             card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -567,6 +459,91 @@
             button.classList.add('active');
             card.querySelector(`#${contentId}`).classList.add('active');
         }
+
+        // 🛍️ NEW MODAL DYNAMIC PAGE ROUTING LOGIC
+        const modalLayer = document.getElementById('dynamic-product-view');
+        const bagBtn = document.getElementById('add-to-bag-btn');
+        const checkoutBtn = document.getElementById('checkout-final-btn');
+
+        function openProductPage(title, desc, placeholderText, whatsappText) {
+            document.getElementById('layer-product-title').innerText = title;
+            document.getElementById('layer-product-desc').innerText = desc;
+            document.getElementById('layer-product-image').innerHTML = `<div style="text-align:center;">${placeholderText}</div>`;
+            
+            // Set up clean custom order redirect URL
+            const encryptedText = encodeURIComponent(whatsappText);
+            checkoutBtn.href = `https://wa.me/919235052087?text=${encryptedText}`;
+            
+            // Reset state inside interactive panel
+            bagBtn.innerText = "Add to Bag";
+            bagBtn.classList.remove('added');
+            checkoutBtn.style.display = "none";
+            
+            // Open screen slide layer
+            modalLayer.classList.add('active');
+        }
+
+        function closeProductPage() {
+            modalLayer.classList.remove('active');
+        }
+
+        function handleAddToBag() {
+            bagBtn.innerText = "✓ Added to Bag";
+            bagBtn.classList.add('added');
+            // Show the checkout flow button instantly below it
+            checkoutBtn.style.display = "block";
+        }
+
+        // Draggable Guide Logic (Completely free of close icons)
+        const dragInstance = document.getElementById('draggable-guide-container');
+        const avatarClickable = document.getElementById('veda-guide');
+        const speechBubble = document.getElementById('guide-speech');
+        let isDragging = false, offsetX, offsetY, hasMoved = false;
+
+        avatarClickable.addEventListener('mousedown', (e) => {
+            isDragging = true; hasMoved = false;
+            offsetX = e.clientX - dragInstance.getBoundingClientRect().left;
+            offsetY = e.clientY - dragInstance.getBoundingClientRect().top;
+            dragInstance.style.bottom = 'auto';
+            dragInstance.style.left = dragInstance.getBoundingClientRect().left + 'px';
+            dragInstance.style.top = dragInstance.getBoundingClientRect().top + 'px';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            hasMoved = true; speechBubble.style.display = 'none';
+            let newX = e.clientX - offsetX, newY = e.clientY - offsetY;
+            newX = Math.max(10, Math.min(newX, window.innerWidth - 90));
+            newY = Math.max(10, Math.min(newY, window.innerHeight - 90));
+            dragInstance.style.left = `${newX}px`; dragInstance.style.top = `${newY}px`;
+        });
+        document.addEventListener('mouseup', () => { isDragging = false; });
+
+        // Touch Support
+        avatarClickable.addEventListener('touchstart', (e) => {
+            isDragging = true; hasMoved = false;
+            const touch = e.touches[0];
+            offsetX = touch.clientX - dragInstance.getBoundingClientRect().left;
+            offsetY = touch.clientY - dragInstance.getBoundingClientRect().top;
+        });
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            hasMoved = true; speechBubble.style.display = 'none';
+            const touch = e.touches[0];
+            let newX = touch.clientX - offsetX, newY = touch.clientY - offsetY;
+            newX = Math.max(10, Math.min(newX, window.innerWidth - 90));
+            newY = Math.max(10, Math.min(newY, window.innerHeight - 90));
+            dragInstance.style.left = `${newX}px`; dragInstance.style.top = `${newY}px`;
+        });
+        document.addEventListener('touchend', () => { isDragging = false; });
+
+        avatarClickable.addEventListener('click', () => {
+            if(hasMoved) return;
+            const quotes = ["🌿 Balance with Love, everyday.", "🌸 Slow living starts with small, conscious habits.", "🪷 Feel free to drag me out of your text's way!"];
+            speechBubble.style.display = 'block';
+            speechBubble.innerText = quotes[Math.floor(Math.random() * quotes.length)];
+        });
+        setTimeout(() => { if(!hasMoved) speechBubble.style.display = 'block'; }, 2000);
     </script>
 </body>
 </html>
