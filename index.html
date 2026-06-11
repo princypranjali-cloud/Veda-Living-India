@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
 
-        /* 🪷 Beautiful True Lotus Palette directly from image reference */
+        /* 🪷 Beautiful True Lotus Palette */
         :root {
             --bg-canvas: #FCFAF7;       
             --white: #FFFFFF;
@@ -19,7 +19,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-canvas); color: var(--primary-text); overflow-x: hidden; scroll-behavior: smooth; }
+        body { background-color: var(--bg-canvas); color: var(--primary-text); overflow-x: hidden; scroll-behavior: smooth; position: relative; }
         .serif-premium { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.01em; }
 
         /* 🍃 Cute Breathing Slow-Pulse Animation */
@@ -41,6 +41,30 @@
         .discount-bubble span { font-size: 1.1rem; line-height: 1; margin-bottom: 2px; }
         @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
+        /* 🌸 Cute Falling Petals Container */
+        #petal-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 99; overflow: hidden;
+        }
+        .petal {
+            position: absolute; background-color: var(--lotus-soft-petal);
+            border-radius: 150% 0 150% 150%; /* Gives a cute leaf/petal shape */
+            opacity: 0.6; animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ✨ Smooth Scroll Fade-In Effect CSS */
+        .reveal {
+            position: relative; opacity: 0; transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         /* Navigation */
         nav {
             display: flex; justify-content: space-between; align-items: center; padding: 20px 8%;
@@ -54,9 +78,7 @@
             margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem;
             text-transform: uppercase; letter-spacing: 0.12em; position: relative; padding-bottom: 4px; font-weight: 500;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--lotus-vibrant-pink); }
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .menu-toggle span { width: 25px; height: 2px; background-color: var(--primary-text); }
+        .nav-links a:hover { color: var(--lotus-vibrant-pink); }
 
         /* Hero */
         .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
@@ -64,17 +86,22 @@
         .hero h1 { font-size: 3.5rem; color: var(--primary-text); line-height: 1.25; max-width: 850px; margin-bottom: 30px; }
         .hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--lotus-vibrant-pink); }
 
-        /* E-commerce Product Grid Layout */
+        /* Product Section */
         .products-section { padding: 60px 8%; position: relative; }
         .section-title { text-align: center; font-size: 2.4rem; color: var(--primary-text); margin-bottom: 10px; }
         .section-subtitle { text-align: center; color: var(--leaf-deep-teal); font-size: 0.95rem; margin-bottom: 60px; font-style: italic; font-family: 'Playfair Display', serif; }
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         
+        /* 🏷️ Card Hover Animation */
         .brand-card {
             background: var(--white); padding: 40px 30px; border-radius: 4px; border: 1px solid rgba(47, 92, 71, 0.08);
-            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s ease;
+            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .brand-card:hover { transform: translateY(-5px); border-color: var(--lotus-vibrant-pink); box-shadow: 0 15px 35px rgba(228, 95, 136, 0.04); }
+        .brand-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--lotus-vibrant-pink); 
+            box-shadow: 0 20px 40px rgba(228, 95, 136, 0.06); 
+        }
         .sub-tag { color: var(--leaf-deep-teal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
         .brand-card h3 { font-size: 1.6rem; color: var(--primary-text); margin: 10px 0 15px 0; }
         .brand-card p { color: #4A524D; line-height: 1.7; font-size: 0.9rem; margin-bottom: 15px; }
@@ -82,9 +109,11 @@
         .placeholder-img {
             width: 100%; height: 220px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center;
             justify-content: center; color: #7A857D; font-size: 0.8rem; letter-spacing: 0.1em; border-radius: 2px; border: 1px dashed rgba(228, 95, 136, 0.15);
+            transition: 0.3s;
         }
+        .brand-card:hover .placeholder-img { background: var(--white); border-color: var(--lotus-vibrant-pink); }
 
-        /* Dual Button Actions */
+        /* Buttons */
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .action-btn {
             width: 100%; padding: 12px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
@@ -95,7 +124,7 @@
         .btn-whatsapp { background: transparent; color: var(--primary-text); border: 1px solid rgba(36,41,37,0.2); }
         .btn-whatsapp:hover { border-color: var(--lotus-vibrant-pink); color: var(--lotus-vibrant-pink); }
 
-        /* Our Story Banner */
+        /* Story Banner */
         .story-section { padding: 80px 8%; background: var(--white); border-top: 1px solid rgba(47, 92, 71, 0.03); }
         .story-content { max-width: 750px; margin: 0 auto; text-align: center; }
         .story-content h2 { font-size: 2.4rem; color: var(--primary-text); margin-bottom: 25px; }
@@ -105,26 +134,15 @@
             color: var(--lotus-vibrant-pink); margin: 25px 0; text-align: center;
         }
 
-        /* Brand Architecture Map */
         .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
         .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
 
-        /* Footer Layout */
         footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(47, 92, 71, 0.05); background: var(--white); }
         .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
         .footer-links a { color: #7A857D; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
         .footer-links a:hover { color: var(--lotus-vibrant-pink); }
 
-        /* 📱 Mobile Responsiveness */
         @media (max-width: 768px) {
-            nav { padding: 15px 5%; }
-            .menu-toggle { display: flex; }
-            .nav-links {
-                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
-                background: var(--bg-canvas); padding: 20px; border-bottom: 1px solid rgba(47, 92, 71, 0.1);
-            }
-            .nav-links.active { display: flex; }
-            .nav-links a { margin: 12px 0; text-align: center; width: 100%; }
             .grid-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.3rem; }
         }
@@ -132,14 +150,16 @@
 </head>
 <body>
 
+    <!-- 🌸 Floating Petals Element -->
+    <div id="petal-container"></div>
+
     <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your checkout message!')">
         <span>10%</span>OFF
     </div>
 
     <nav>
         <a href="index.html" class="logo serif-premium">VEDA LIVING <span>INDIA</span></a>
-        <div class="menu-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-        <div class="nav-links" id="navLinks">
+        <div class="nav-links">
             <a href="#our-products">Our Products</a>
             <a href="#our-story">Our Story</a>
             <a href="journal.html">Journal</a>
@@ -153,7 +173,8 @@
         <h1 class="serif-premium pulse-slow">Your Body Was Never Meant to Grow on <em>Synthetic Chemicals</em></h1>
     </section>
 
-    <section id="our-products" class="products-section">
+    <!-- 🌟 Added "reveal" class here for smooth scroll entry -->
+    <section id="our-products" class="products-section reveal">
         <h2 class="section-title serif-premium">The Veda Registry</h2>
         <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
         
@@ -204,7 +225,8 @@
         </div>
     </section>
 
-    <section id="our-story" class="story-section">
+    <!-- 🌟 Added "reveal" class here as well -->
+    <section id="our-story" class="story-section reveal">
         <div class="story-content">
             <h2 class="serif-premium">Our Story</h2>
             <p>In a world running after 'fast living,' we have normalized a dangerous truth—absorbing and consuming synthetic chemicals from morning till night, only to later spend our savings managing lifestyle diseases with allopathic drugs. Having a background in Bioinformatics and Drug Designing, I closely saw how even modern medicines trace their foundations back to natural plants. But when chemicals are synthetically altered, they silently store inside our body, slowly disrupting our natural balance.</p>
@@ -223,7 +245,42 @@
     </footer>
 
     <script>
-        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+        // 🌸 Script to generate cute falling petals dynamically
+        const container = document.getElementById('petal-container');
+        const maxPetals = 15;
+
+        function createPetal() {
+            if (container.children.length >= maxPetals) return;
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const size = Math.random() * 12 + 6; // random size between 6px and 18px
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.animationDuration = `${Math.random() * 5 + 6}s`; // slow fall between 6s and 11s
+            petal.style.delay = `${Math.random() * 5}s`;
+
+            container.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 11000);
+        }
+        setInterval(createPetal, 800);
+
+        // ✨ Script to activate smooth fade-in on scroll
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(windowSection => {
+                const windowHeight = window.innerHeight;
+                const elementTop = windowSection.getBoundingClientRect().top;
+                const elementVisible = 100; // triggers animation when 100px visible
+
+                if (elementTop < windowHeight - elementVisible) {
+                    windowSection.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections); // Trigger on fresh load too
     </script>
 </body>
 </html>
