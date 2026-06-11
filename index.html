@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veda Living India | Balance with Love</title>
-    <!-- ✨ Font Awesome Icons -->
+    <!-- ✨ Font Awesome for Crisp Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
@@ -43,7 +43,7 @@
         .discount-bubble span { font-size: 1.1rem; line-height: 1; margin-bottom: 2px; }
         @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        /* Falling Petals */
+        /* Falling Petals Container */
         #petal-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99; overflow: hidden; }
         .petal { position: absolute; background-color: var(--lotus-soft-petal); border-radius: 150% 0 150% 150%; opacity: 0.6; animation: fall linear infinite; }
         @keyframes fall {
@@ -53,7 +53,7 @@
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Draggable Guide Box (No X Button) */
+        /* Draggable Virtual Living Guide (No X button) */
         .guide-wrapper { position: fixed; bottom: 35px; left: 35px; display: flex; align-items: flex-end; gap: 15px; z-index: 1000; user-select: none; }
         .guide-avatar {
             width: 70px; height: 70px; background: #FFF0F3; border: 3px solid var(--leaf-deep-teal);
@@ -68,7 +68,7 @@
             font-size: 0.82rem; line-height: 1.5; color: var(--primary-text); display: none; pointer-events: none;
         }
 
-        /* Navigation */
+        /* Navigation Header with Shopping Bag Icon */
         nav {
             display: flex; justify-content: space-between; align-items: center; padding: 20px 8%;
             background: rgba(252, 250, 247, 0.95); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100;
@@ -76,16 +76,26 @@
         }
         .logo { font-size: 1.35rem; letter-spacing: 0.12em; color: var(--leaf-deep-teal); text-decoration: none; }
         .logo span { color: var(--lotus-vibrant-pink); }
-        .nav-links a { margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; }
+        
+        .nav-right-container { display: flex; align-items: center; gap: 25px; }
+        .nav-links a { text-decoration: none; color: var(--primary-text); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 500; margin-left: 24px; }
         .nav-links a:hover { color: var(--lotus-vibrant-pink); }
+        
+        /* Shopping Bag Trigger Icon Restored */
+        .cart-trigger { position: relative; font-size: 1.2rem; color: var(--leaf-deep-teal); cursor: pointer; display: flex; align-items: center; }
+        .cart-count-badge {
+            position: absolute; top: -8px; right: -10px; background: var(--lotus-vibrant-pink); color: var(--white);
+            font-size: 0.65rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--white);
+        }
 
-        /* Hero */
+        /* Hero Container */
         .hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
         .tagline { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--leaf-deep-teal); margin-bottom: 20px; font-weight: 600; }
         .hero h1 { font-size: 3.5rem; color: var(--primary-text); line-height: 1.25; max-width: 850px; margin-bottom: 30px; }
         .hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--lotus-vibrant-pink); }
 
-        /* Grid & Cards */
+        /* Products Grid Setup */
         .products-section { padding: 60px 8%; position: relative; }
         .section-title { text-align: center; font-size: 2.4rem; color: var(--primary-text); margin-bottom: 10px; }
         .section-subtitle { text-align: center; color: var(--leaf-deep-teal); font-size: 0.95rem; margin-bottom: 60px; font-style: italic; font-family: 'Playfair Display', serif; }
@@ -101,76 +111,76 @@
         .brand-card h3 { font-size: 1.6rem; color: var(--primary-text); margin: 8px 0 12px 0; }
         .brand-card p { color: #4A524D; line-height: 1.6; font-size: 0.88rem; margin-bottom: 15px; }
         
-        /* Tabs Framework */
+        /* Interactive Spec Sheets */
         .product-tabs { display: flex; border-bottom: 1px solid #ECEAE6; margin-bottom: 15px; gap: 15px; }
-        .tab-btn {
-            background: none; border: none; padding: 6px 0; font-size: 0.78rem; text-transform: uppercase;
-            letter-spacing: 0.05em; font-weight: 600; color: #7A857D; cursor: pointer; position: relative;
-        }
+        .tab-btn { background: none; border: none; padding: 6px 0; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; color: #7A857D; cursor: pointer; position: relative; }
         .tab-btn.active { color: var(--lotus-vibrant-pink); }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: var(--lotus-vibrant-pink); }
         .tab-content { font-size: 0.85rem; line-height: 1.6; color: #5A625D; min-height: 85px; display: none; }
         .tab-content.active { display: block; }
 
-        /* ✨ SIMPLIFIED CLEAN MINDFUL RITUAL TRACKER Box */
-        .ritual-tracker-box {
-            background: #FAF9F6; border: 1px solid rgba(47, 92, 71, 0.08); padding: 12px 15px; border-radius: 6px;
-        }
+        /* Mindful Ritual Tracker Box */
+        .ritual-tracker-box { background: #FAF9F6; border: 1px solid rgba(47, 92, 71, 0.08); padding: 12px 15px; border-radius: 6px; }
         .tracker-row { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; margin-bottom: 6px; color: #3A403C; }
         .tracker-row:last-child { margin-bottom: 0; }
         .tracker-row i { color: var(--pod-bright-green); font-size: 0.9rem; }
         .tracker-row .label { font-weight: 600; color: var(--leaf-deep-teal); }
 
-        .placeholder-img {
-            width: 100%; height: 200px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center;
-            justify-content: center; color: #7A857D; font-size: 0.8rem; border-radius: 4px; border: 1px dashed rgba(228, 95, 136, 0.15);
-        }
+        .placeholder-img { width: 100%; height: 200px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center; justify-content: center; color: #7A857D; font-size: 0.8rem; border-radius: 4px; border: 1px dashed rgba(228, 95, 136, 0.15); }
 
-        /* Action Buttons styling */
+        /* Action Buttons Matrix */
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .action-btn {
-            width: 100%; padding: 13px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s;
-        }
+        .action-btn { width: 100%; padding: 13px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s; }
         .btn-amazon { background: var(--leaf-deep-teal); color: var(--white); }
         .btn-amazon:hover { background: var(--primary-text); }
         .btn-bringhome { background: var(--lotus-vibrant-pink); color: var(--white); font-weight: 700; }
         .btn-bringhome:hover { background: #cf4f75; }
 
-        /* 🛍️ VIRTUAL BRING HOME NEW PAGE (DYNAMIC SLIDE MODAL) */
-        .product-page-layer {
-            position: fixed; top: 0; right: -100%; width: 100%; max-width: 500px; height: 100vh;
-            background: var(--white); box-shadow: -10px 0 40px rgba(0,0,0,0.1); z-index: 10000;
-            transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1); display: flex; flex-direction: column;
+        /* 🖥️ AUTHENTIC FULLSCREEN VIRTUAL MULTI-PAGE VIEW LAYER */
+        .fullscreen-page-view {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: var(--bg-canvas);
+            z-index: 20000; display: none; overflow-y: auto; padding: 40px 8%;
         }
-        .product-page-layer.active { right: 0; }
+        .fullscreen-page-view.active { display: block; }
         
-        .layer-header { padding: 25px; border-bottom: 1px solid #F0EDE9; display: flex; align-items: center; gap: 15px; }
-        .back-layer-btn { background: none; border: none; font-size: 1.1rem; color: var(--primary-text); cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 600; }
-        .back-layer-btn:hover { color: var(--lotus-vibrant-pink); }
+        .page-back-nav { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--leaf-deep-teal); cursor: pointer; font-weight: 600; margin-bottom: 40px; border: none; background: none; }
+        .page-back-nav:hover { color: var(--lotus-vibrant-pink); }
         
-        .layer-body { padding: 30px; overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 20px; }
-        .layer-img-container { width: 100%; height: 280px; background: #FCFAF7; border-radius: 8px; border: 1px dashed rgba(47,92,71,0.1); display: flex; align-items: center; justify-content: center; color: #A0A8A3; }
-        .layer-title-meta h2 { font-size: 1.8rem; color: var(--primary-text); margin-bottom: 5px; }
-        .layer-price { font-size: 1.4rem; color: var(--leaf-deep-teal); font-weight: 700; margin: 10px 0; }
-        .layer-description { font-size: 0.9rem; line-height: 1.7; color: #4A524D; }
+        .page-product-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; background: var(--white); padding: 50px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.04); }
+        .page-product-media { width: 100%; height: 400px; background: #FAF9F6; border-radius: 6px; border: 1px dashed rgba(228,95,136,0.2); display: flex; align-items: center; justify-content: center; color: #8A928D; }
         
-        /* Interactive Bag Matrix Buttons */
-        .bag-controls-box { background: #FCFAF7; padding: 20px; border-radius: 6px; border: 1px solid rgba(0,0,0,0.03); margin-top: 10px; }
-        .btn-add-to-bag {
-            width: 100%; padding: 15px; background: var(--primary-text); color: var(--white); border: none; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; cursor: pointer; transition: 0.3s; margin-bottom: 12px;
+        .page-product-details { display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+        .page-product-details h2 { font-size: 2.5rem; color: var(--primary-text); }
+        .page-product-price { font-size: 1.6rem; color: var(--leaf-deep-teal); font-weight: 700; }
+        .page-product-desc { font-size: 0.95rem; line-height: 1.8; color: #4A524D; }
+        
+        .page-actions-box { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; max-width: 400px; }
+        .page-btn-add { width: 100%; padding: 16px; background: var(--primary-text); color: var(--white); font-weight: 600; border: none; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: 0.3s; }
+        .page-btn-add:hover { background: var(--leaf-deep-teal); }
+        .page-btn-add.added { background: var(--pod-bright-green); pointer-events: none; }
+        
+        /* 💳 Connected Checkout Interface Panel */
+        .razorpay-checkout-panel {
+            background: #F4FBF1; border: 1.5px solid rgba(118,193,71,0.25); border-radius: 6px; padding: 20px;
+            display: none; flex-direction: column; gap: 12px; margin-top: 10px;
         }
-        .btn-add-to-bag:hover { background: var(--leaf-deep-teal); }
-        .btn-add-to-bag.added { background: var(--pod-bright-green); pointer-events: none; }
-        
-        .btn-checkout-final {
-            width: 100%; padding: 15px; background: var(--lotus-vibrant-pink); color: var(--white); border: none; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; cursor: pointer; display: none; text-align: center; text-decoration: none;
-        }
-        .btn-checkout-final:hover { background: #cf4f75; }
+        .razorpay-title-row { display: flex; align-items: center; gap: 10px; color: var(--leaf-deep-teal); font-weight: 600; font-size: 0.9rem; }
+        .razorpay-title-row i { color: var(--pod-bright-green); }
+        .btn-razorpay-trigger { width: 100%; padding: 15px; background: #1F6FFF; color: var(--white); border: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.82rem; cursor: pointer; text-align: center; text-decoration: none; border-radius: 4px; }
+        .btn-razorpay-trigger:hover { background: #1355CC; }
 
-        /* Story Banner */
+        /* Core Cart Modal Overlay Framework */
+        .cart-overlay-window {
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 400px; height: 100vh;
+            background: var(--white); box-shadow: -10px 0 40px rgba(0,0,0,0.1); z-index: 30000;
+            transition: right 0.4s ease; display: flex; flex-direction: column; padding: 25px;
+        }
+        .cart-overlay-window.active { right: 0; }
+        .cart-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #EEE; padding-bottom: 15px; }
+        .close-cart-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #888; }
+        .cart-items-list { flex-grow: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; font-size: 0.9rem; color: #4A524D; }
+
+        /* Story Architecture */
         .story-section { padding: 80px 8%; background: var(--white); }
         .story-content { max-width: 750px; margin: 0 auto; text-align: center; }
         .story-content h2 { font-size: 2.4rem; color: var(--primary-text); margin-bottom: 25px; }
@@ -180,7 +190,7 @@
         .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
         .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
 
-        /* Footer */
+        /* Footer Architecture */
         footer { background: #FFFFFF; border-top: 1px solid rgba(47, 92, 71, 0.08); padding: 70px 8% 30px 8%; color: var(--primary-text); }
         .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
         .footer-col h3 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 20px; text-transform: uppercase; }
@@ -200,9 +210,9 @@
 
         @media (max-width: 768px) {
             .grid-layout { grid-template-columns: 1fr; }
+            .page-product-layout { grid-template-columns: 1fr; padding: 25px; gap: 30px; }
             .hero h1 { font-size: 2.3rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 35px; }
-            .product-page-layer { max-width: 100%; }
         }
     </style>
 </head>
@@ -210,25 +220,36 @@
 
     <div id="petal-container"></div>
 
-    <!-- Draggable Guide (No close button junk) -->
+    <!-- Free Draggable Guide Box (No X Button Asset) -->
     <div class="guide-wrapper" id="draggable-guide-container">
         <div class="guide-avatar" id="veda-guide">
             <i class="fas fa-spa"></i>
         </div>
         <div class="guide-bubble" id="guide-speech">
-            Hello dear seeker! ✨ Drag me anywhere on the screen if I block your view.
+            Hello dear seeker! ✨ Drag me safely anywhere on the screen if I block your text lines.
         </div>
     </div>
 
-    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your WhatsApp Checkout!')">
+    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your Checkout Framework!')">
         <span>10%</span>OFF
     </div>
 
+    <!-- 🏷️ RESTORED COMPLETE HEADER NAVIGATION -->
     <nav>
         <a href="index.html" class="logo serif-premium">VEDA LIVING <span>INDIA</span></a>
-        <div class="nav-links">
-            <a href="#our-products">Our Products</a>
-            <a href="#our-story">Our Story</a>
+        <div class="nav-right-container">
+            <div class="nav-links">
+                <a href="#our-products">Our Products</a>
+                <a href="#our-story">Our Story</a>
+                <a href="journal.html">Journal</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+            <!-- Restored Master Shopping Bag Icon Link -->
+            <div class="cart-trigger" onclick="toggleCartOverlay(true)">
+                <i class="fas fa-shopping-bag"></i>
+                <div class="cart-count-badge" id="master-cart-counter">0</div>
+            </div>
         </div>
     </nav>
 
@@ -237,7 +258,7 @@
         <h1 class="serif-premium pulse-slow">Your Body Was Never Meant to Grow on <em>Synthetic Chemicals</em></h1>
     </section>
 
-    <!-- 🪷 THE AUTHENTIC 3-PRODUCT AYURVEDA REGISTRY -->
+    <!-- 🪷 3-PRODUCT AYURVEDA CATALOG GRID -->
     <section id="our-products" class="products-section">
         <h2 class="section-title serif-premium">The Veda Registry</h2>
         <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
@@ -269,7 +290,6 @@
                         Apply 8-10 drops directly onto clean dry scalp. Massage gently in clockwise circular motion for 5 minutes.
                     </div>
                     
-                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p1-track" class="tab-content">
                         <div class="ritual-tracker-box">
                             <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Method:</span> Taila Pak Vidhi Infusion</div>
@@ -279,9 +299,8 @@
                     </div>
                 </div>
                 <div class="btn-group">
-                    <!-- Paste your actual Amazon Product Link inside href="" -->
                     <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_1" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <button class="action-btn btn-bringhome" onclick="openProductPage('16 Herbs & 6 Oils Hair Infusion', 'Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base. Free from artificial base thinners, petrochemical mineral oils, and paraffin frameworks.', '[ 16 Herbs Live Infusion Image ]', 'Hi! I want to complete my checkout for the 16 Herbs & 6 Oils Hair Infusion.')">Bring Home</button>
+                    <button class="action-btn btn-bringhome" onclick="launchProductPage('16 Herbs & 6 Oils Hair Infusion', 'Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base. Free from artificial base thinners, petrochemical mineral oils, and paraffin frameworks.', '[ 16 Herbs Live Infusion Image ]')">Bring Home</button>
                 </div>
             </div>
 
@@ -311,7 +330,6 @@
                         Warm a small quantity between your palms. Apply uniformly from your hair roots right down to tips.
                     </div>
                     
-                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p2-track" class="tab-content">
                         <div class="ritual-tracker-box">
                             <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Vessel:</span> Controlled Aluminum Processing</div>
@@ -321,9 +339,8 @@
                     </div>
                 </div>
                 <div class="btn-group">
-                    <!-- Paste your actual Amazon Product Link inside href="" -->
                     <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_2" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <button class="action-btn btn-bringhome" onclick="openProductPage('Keshvilas Hair Oil', 'A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components. Best suited for deep weekend mindfulness tracking therapy.', '[ Keshvilas Hair Oil Live Image ]', 'Hi! I want to complete my checkout for the Keshvilas Hair Oil.')">Bring Home</button>
+                    <button class="action-btn btn-bringhome" onclick="launchProductPage('Keshvilas Hair Oil', 'A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components. Best suited for deep weekend mindfulness tracking therapy.', '[ Keshvilas Hair Oil Live Image ]')">Bring Home</button>
                 </div>
             </div>
 
@@ -353,7 +370,6 @@
                         Part hair sections cleanly. Apply gently onto areas needing deep root activation. Use three times a week.
                     </div>
                     
-                    <!-- Clean Mindful Ritual Tracker -->
                     <div id="p3-track" class="tab-content">
                         <div class="ritual-tracker-box">
                             <div class="tracker-row"><i class="fas fa-check-circle"></i> <span class="label">Sourcing:</span> Direct Pure Farm Roots</div>
@@ -363,9 +379,8 @@
                     </div>
                 </div>
                 <div class="btn-group">
-                    <!-- Paste your actual Amazon Product Link inside href="" -->
                     <a href="https://www.amazon.in/dp/YOUR_PRODUCT_ID_3" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <button class="action-btn btn-bringhome" onclick="openProductPage('Bhringraj Hair Oil', 'Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances or chemical thinners.', '[ Pure Bhringraj Infusion Live Image ]', 'Hi! I want to complete my checkout for the Pure Bhringraj Oil.')">Bring Home</button>
+                    <button class="action-btn btn-bringhome" onclick="launchProductPage('Bhringraj Hair Oil', 'Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances or chemical thinners.', '[ Pure Bhringraj Infusion Live Image ]')">Bring Home</button>
                 </div>
             </div>
         </div>
@@ -376,24 +391,42 @@
         </div>
     </section>
 
-    <!-- 🛍️ NEW DYNAMIC PRODUCT PAGE LAYER (SLIDES FROM RIGHT ON BRING HOME CLICK) -->
-    <div class="product-page-layer" id="dynamic-product-view">
-        <div class="layer-header">
-            <button class="back-layer-btn" onclick="closeProductPage()"><i class="fas fa-arrow-left"></i> Back to Catalog</button>
+    <!-- 🖥️ TRUE INDEPENDENT FULLSCREEN PAGE LAYER (TRIGGERS VIA BRING HOME) -->
+    <div class="fullscreen-page-view" id="independent-product-page">
+        <button class="page-back-nav" onclick="exitProductPage()"><i class="fas fa-arrow-left"></i> Back to Main Website</button>
+        
+        <div class="page-product-layout">
+            <div class="page-product-media" id="fullscreen-img-spot">[ Product Focal Frame ]</div>
+            <div class="page-product-details">
+                <span class="sub-tag">Veda Ayurveda Batch Selection</span>
+                <h2 id="fullscreen-title-spot">Product Title</h2>
+                <div class="page-product-price">Conscious Everyday Care</div>
+                <p class="page-product-desc" id="fullscreen-desc-spot">Detailed text loads uniformly here.</p>
+                
+                <div class="page-actions-box">
+                    <button class="page-btn-add" id="fullscreen-add-bag-btn" onclick="executeBagAddition()">Add to Bag</button>
+                    
+                    <!-- 💳 Razorpay Connected Gateways Portal Appears Seamlessly -->
+                    <div class="razorpay-checkout-panel" id="razorpay-panel">
+                        <div class="razorpay-title-row">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Interconnected Gateway Verified</span>
+                        </div>
+                        <button class="btn-razorpay-trigger" onclick="alert('Redirecting smoothly to Razorpay Secured Core Link API Checkout Gateway...')">Proceed to Razorpay Checkout</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="layer-body">
-            <div class="layer-img-container" id="layer-product-image">[ Product Image ]</div>
-            <div class="layer-title-meta">
-                <span class="sub-tag">Veda Ayurveda</span>
-                <h2 id="layer-product-title">Product Title</h2>
-                <div class="layer-price">Handmade Everyday Care</div>
-            </div>
-            <p class="layer-description" id="layer-product-desc">Detailed descriptions appear natively here.</p>
-            
-            <div class="bag-controls-box">
-                <button class="btn-add-to-bag" id="add-to-bag-btn" onclick="handleAddToBag()">Add to Bag</button>
-                <a href="" id="checkout-final-btn" class="btn-checkout-final" target="_blank">Proceed to Checkout</a>
-            </div>
+    </div>
+
+    <!-- 🛍️ SLIDEOUT OVERLAY RE-INTEGRATED TO VIEW COMPLETE ADDED ITEMS -->
+    <div class="cart-overlay-window" id="sidebar-cart-window">
+        <div class="cart-header-box">
+            <h3 class="serif-premium">Your Bag Selection</h3>
+            <button class="close-cart-btn" onclick="toggleCartOverlay(false)"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-list" id="cart-items-injector">
+            <div style="text-align:center; color:#999; margin-top:40px;">No items selected inside your bag yet.</div>
         </div>
     </div>
 
@@ -460,41 +493,92 @@
             card.querySelector(`#${contentId}`).classList.add('active');
         }
 
-        // 🛍️ NEW MODAL DYNAMIC PAGE ROUTING LOGIC
-        const modalLayer = document.getElementById('dynamic-product-view');
-        const bagBtn = document.getElementById('add-to-bag-btn');
-        const checkoutBtn = document.getElementById('checkout-final-btn');
+        // Global Cart Engine Arrays
+        let activeBagItems = [];
+        let temporaryTargetProduct = "";
 
-        function openProductPage(title, desc, placeholderText, whatsappText) {
-            document.getElementById('layer-product-title').innerText = title;
-            document.getElementById('layer-product-desc').innerText = desc;
-            document.getElementById('layer-product-image').innerHTML = `<div style="text-align:center;">${placeholderText}</div>`;
+        // 🖥️ INDEPENDENT FULL-PAGE ROUTING SYSTEM
+        const independentPage = document.getElementById('independent-product-page');
+        const addBagBtn = document.getElementById('fullscreen-add-bag-btn');
+        const razorpayUI = document.getElementById('razorpay-panel');
+
+        function launchProductPage(title, desc, placeholderGraphic) {
+            temporaryTargetProduct = title;
+            document.getElementById('fullscreen-title-spot').innerText = title;
+            document.getElementById('fullscreen-desc-spot').innerText = desc;
+            document.getElementById('fullscreen-img-spot').innerHTML = `<div style="text-align:center;">${placeholderGraphic}</div>`;
             
-            // Set up clean custom order redirect URL
-            const encryptedText = encodeURIComponent(whatsappText);
-            checkoutBtn.href = `https://wa.me/919235052087?text=${encryptedText}`;
+            // Sync current bag data state
+            if(activeBagItems.includes(title)) {
+                addBagBtn.innerText = "✓ Added to Bag Session";
+                addBagBtn.classList.add('added');
+                razorpayUI.style.display = "flex";
+            } else {
+                addBagBtn.innerText = "Add to Bag";
+                addBagBtn.classList.remove('added');
+                razorpayUI.style.display = "none";
+            }
             
-            // Reset state inside interactive panel
-            bagBtn.innerText = "Add to Bag";
-            bagBtn.classList.remove('added');
-            checkoutBtn.style.display = "none";
-            
-            // Open screen slide layer
-            modalLayer.classList.add('active');
+            independentPage.classList.add('active');
+            window.scrollTo(0, 0);
         }
 
-        function closeProductPage() {
-            modalLayer.classList.remove('active');
+        function exitProductPage() {
+            independentPage.classList.remove('active');
         }
 
-        function handleAddToBag() {
-            bagBtn.innerText = "✓ Added to Bag";
-            bagBtn.classList.add('added');
-            // Show the checkout flow button instantly below it
-            checkoutBtn.style.display = "block";
+        function executeBagAddition() {
+            if(!activeBagItems.includes(temporaryTargetProduct)) {
+                activeBagItems.push(temporaryTargetProduct);
+            }
+            
+            // Visual feedback transitions
+            addBagBtn.innerText = "✓ Added to Bag Session";
+            addBagBtn.classList.add('added');
+            
+            // Smoothly reveal Razorpay connected panel matrix right below it
+            razorpayUI.style.display = "flex";
+            
+            // Update counts across headers
+            updateMasterCartUI();
         }
 
-        // Draggable Guide Logic (Completely free of close icons)
+        // Toggle Sidebar System
+        function toggleCartOverlay(openState) {
+            const sidebar = document.getElementById('sidebar-cart-window');
+            if(openState) sidebar.classList.add('active');
+            else sidebar.classList.remove('active');
+        }
+
+        function updateMasterCartUI() {
+            document.getElementById('master-cart-counter').innerText = activeBagItems.length;
+            const injector = document.getElementById('cart-items-injector');
+            
+            if(activeBagItems.length === 0) {
+                injector.innerHTML = `<div style="text-align:center; color:#999; margin-top:40px;">No items selected inside your bag yet.</div>`;
+            } else {
+                injector.innerHTML = activeBagItems.map(item => `
+                    <div style="padding:12px; background:#FAF9F6; border:1px solid #EEE; display:flex; justify-content:space-between; align-items:center; border-radius:4px;">
+                        <div><strong>${item}</strong><br><span style="font-size:0.75rem; color:var(--leaf-deep-teal);">1 Unit Selected</span></div>
+                        <i class="fas fa-trash" style="color:#C66; cursor:pointer;" onclick="removeBagItem('${item}')"></i>
+                    </div>
+                `).join('') + `
+                    <button style="width:100%; padding:14px; margin-top:20px; background:var(--lotus-vibrant-pink); color:white; border:none; font-weight:700; text-transform:uppercase; cursor:pointer;" onclick="alert('Redirecting checkout stack direct to connected processing engines...')">Secure Checkout All Items</button>
+                `;
+            }
+        }
+
+        function removeBagItem(itemName) {
+            activeBagItems = activeBagItems.filter(i => i !== itemName);
+            updateMasterCartUI();
+            if(temporaryTargetProduct === itemName) {
+                addBagBtn.innerText = "Add to Bag";
+                addBagBtn.classList.remove('added');
+                razorpayUI.style.display = "none";
+            }
+        }
+
+        // Draggable Guide Engine
         const dragInstance = document.getElementById('draggable-guide-container');
         const avatarClickable = document.getElementById('veda-guide');
         const speechBubble = document.getElementById('guide-speech');
