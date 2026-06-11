@@ -16,6 +16,23 @@
         .serif-font {
             font-family: 'Playfair Display', serif;
         }
+
+        /* Micro-interactions: Shimmer Effect */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .shimmer-btn:hover::after {
+            transform: translateX(100%);
+        }
     </style>
 </head>
 <body>
@@ -31,16 +48,17 @@
                 <a href="#home" class="hover:text-[#EB9AAB] transition-colors">Home</a>
                 <a href="#story" class="hover:text-[#EB9AAB] transition-colors">Our Story</a>
                 <a href="#products" class="hover:text-[#EB9AAB] transition-colors">Products</a>
+                <a href="#companion" class="hover:text-[#EB9AAB] transition-colors">Veda Companion</a>
                 <a href="#contact" class="hover:text-[#EB9AAB] transition-colors">Contact</a>
             </div>
-            <a href="https://wa.me/c/919235052087" target="_blank" class="bg-[#2C3E35] text-[#FAF8F5] px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#3D5449] transition-all">
+            <a href="https://wa.me/c/919235052087" target="_blank" class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#3D5449] transition-all">
                 WhatsApp Shop
             </a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section id="home" class="relative py-20 px-6 overflow-hidden flex flex-col items-center text-center">
+    <section id="home" class="relative py-24 px-6 overflow-hidden flex flex-col items-center text-center">
         <div class="absolute top-10 left-10 text-4xl opacity-20 pointer-events-none">🪷</div>
         <div class="absolute bottom-10 right-10 text-5xl opacity-20 pointer-events-none">🪷</div>
         
@@ -53,8 +71,8 @@
                 Traditional Ayurvedic practices crafted mindfully in small batches. No shortcuts, just pure botanical wisdom for conscious everyday living.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#products" class="bg-[#2C3E35] text-[#FAF8F5] px-8 py-3.5 rounded-full font-medium shadow-sm hover:bg-[#3D5449] transition-all">
-                    Explore Our Products
+                <a href="#products" class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-8 py-3.5 rounded-full font-medium shadow-sm hover:bg-[#3D5449] transition-all">
+                    Bring Home (Direct Order)
                 </a>
                 <a href="#story" class="border border-[#2C3E35] text-[#2C3E35] px-8 py-3.5 rounded-full font-medium hover:bg-[#2C3E35]/5 transition-all">
                     Read Our Roots
@@ -63,20 +81,35 @@
         </div>
     </section>
 
-    <!-- WORK IN PROGRESS PLACEHOLDERS -->
-    <section id="story" class="py-16 bg-[#F3EFE9] px-6 text-center">
+    <!-- OUR STORY PLACEHOLDER -->
+    <section id="story" class="py-16 bg-[#F3EFE9] px-6 text-center border-t border-[#E8E2D9]">
         <div class="max-w-4xl mx-auto">
             <p class="text-[#A38A75] italic">Our Story Section yahan aayega...</p>
         </div>
     </section>
 
+    <!-- PRODUCTS PLACEHOLDER -->
     <section id="products" class="py-16 px-6 text-center">
         <div class="max-w-6xl mx-auto">
             <p class="text-[#A38A75] italic">Products Section aur reviews yahan aayenge...</p>
         </div>
     </section>
 
-    <!-- FOOTER WITH YOUR EXACT CONTACT & TRUST INFO -->
+    <!-- VEDA COMPANION SECTION -->
+    <section id="companion" class="py-20 bg-[#FAF8F5] px-6 border-t border-[#E8E2D9]">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-2xl mb-2 block">🧘‍♀️</span>
+            <h2 class="serif-font text-3xl text-[#2C3E35] mb-4">Veda Companion</h2>
+            <p class="text-sm text-[#607266] max-w-lg mx-auto mb-8">
+                Apne routine mein thoda thehraav laiye. Hamare sath judiye daily Surya Namaskar aur mindfulness ke chhote par asardaar abhyas ke liye.
+            </p>
+            <button class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">
+                Start Your Practice
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER WITH TRUST INFO -->
     <footer id="contact" class="bg-[#2C3E35] text-[#FAF8F5]/90 pt-16 pb-8 px-6 border-t border-[#3D5449]">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
             <div>
@@ -100,6 +133,9 @@
                 </p>
                 <p class="text-sm text-[#FAF8F5]/70">
                     <strong>Phone / WhatsApp:</strong> +91 9235052087
+                </p>
+                <p class="text-sm text-[#FAF8F5]/70 mt-2">
+                    <strong>Customer Care:</strong> pptraders@gmail.com
                 </p>
             </div>
 
