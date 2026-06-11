@@ -48,7 +48,7 @@
         }
         .petal {
             position: absolute; background-color: var(--lotus-soft-petal);
-            border-radius: 150% 0 150% 150%; /* Gives a cute leaf/petal shape */
+            border-radius: 150% 0 150% 150%; 
             opacity: 0.6; animation: fall linear infinite;
         }
         @keyframes fall {
@@ -64,6 +64,29 @@
             transition: all 1s ease-out;
         }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 🧚‍♀️ CUTE VIRTUAL LIVING GUIDE CONTAINER */
+        .guide-wrapper {
+            position: fixed; bottom: 30px; left: 30px; display: flex; align-items: flex-end; gap: 15px; z-index: 999;
+        }
+        .guide-avatar {
+            width: 70px; height: 70px; background: #E8F4EE; border: 3px solid var(--leaf-deep-teal);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 2.2rem; cursor: pointer; box-shadow: 0 8px 20px rgba(47,92,71,0.15);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+        }
+        .guide-avatar:hover { transform: scale(1.1) rotate(5deg); }
+        .guide-avatar::after {
+            content: ''; position: absolute; width: 12px; height: 12px; background: var(--pod-bright-green);
+            border-radius: 50%; bottom: 2px; right: 2px; border: 2px solid var(--white);
+        }
+        .guide-bubble {
+            background: var(--white); border: 1px solid rgba(47,92,71,0.12); padding: 15px 20px;
+            border-radius: 16px 16px 16px 4px; max-width: 260px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            font-size: 0.85rem; line-height: 1.5; color: var(--primary-text); display: none;
+            animation: popIn 0.4s ease-out forwards;
+        }
+        @keyframes popIn { from { opacity: 0; transform: translateY(10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         /* Navigation */
         nav {
@@ -113,16 +136,27 @@
         }
         .brand-card:hover .placeholder-img { background: var(--white); border-color: var(--lotus-vibrant-pink); }
 
-        /* Buttons */
+        /* Buttons & Super Cool Shimmer */
         .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
         .action-btn {
-            width: 100%; padding: 12px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.1em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; transition: 0.3s;
+            width: 100%; padding: 13px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; 
+            transition: 0.3s; position: relative; overflow: hidden;
         }
+        /* Classy Shimmer Animation Effect */
+        .action-btn::after {
+            content: ''; position: absolute; top: 0; left: -50%; width: 30%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); transition: 0.75s;
+        }
+        .action-btn:hover::after { left: 120%; }
+
         .btn-amazon { background: var(--leaf-deep-teal); color: var(--white); }
         .btn-amazon:hover { background: var(--primary-text); }
-        .btn-whatsapp { background: transparent; color: var(--primary-text); border: 1px solid rgba(36,41,37,0.2); }
-        .btn-whatsapp:hover { border-color: var(--lotus-vibrant-pink); color: var(--lotus-vibrant-pink); }
+        
+        /* Premium Bring Home Button Look */
+        .btn-bringhome { background: var(--lotus-vibrant-pink); color: var(--white); font-weight: 700; box-shadow: 0 4px 15px rgba(228,95,136,0.15); }
+        .btn-bringhome:hover { background: #cf4f75; transform: scale(1.01); }
 
         /* Story Banner */
         .story-section { padding: 80px 8%; background: var(--white); border-top: 1px solid rgba(47, 92, 71, 0.03); }
@@ -145,6 +179,7 @@
         @media (max-width: 768px) {
             .grid-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.3rem; }
+            .guide-wrapper { bottom: 20px; left: 20px; }
         }
     </style>
 </head>
@@ -153,7 +188,15 @@
     <!-- 🌸 Floating Petals Element -->
     <div id="petal-container"></div>
 
-    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your checkout message!')">
+    <!-- 🧚‍♀️ Cute Interactive Guide Person Structure -->
+    <div class="guide-wrapper">
+        <div class="guide-avatar" id="veda-guide" onclick="triggerGuideSpeech()">🌸</div>
+        <div class="guide-bubble" id="guide-speech">
+            Hello dear seeker! ✨ Welcome to Veda Living. I am your mindful partner. Scroll down to see our fresh, honest whole-herb hair infusions!
+        </div>
+    </div>
+
+    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your WhatsApp Checkout!')">
         <span>10%</span>OFF
     </div>
 
@@ -173,7 +216,6 @@
         <h1 class="serif-premium pulse-slow">Your Body Was Never Meant to Grow on <em>Synthetic Chemicals</em></h1>
     </section>
 
-    <!-- 🌟 Added "reveal" class here for smooth scroll entry -->
     <section id="our-products" class="products-section reveal">
         <h2 class="section-title serif-premium">The Veda Registry</h2>
         <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
@@ -187,8 +229,10 @@
                     <div class="placeholder-img">[ 16 Herbs Infusion Product ]</div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%2016%20Herbs%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                    <!-- Actual working Amazon link slot -->
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <!-- Direct Action Bring Home Button -->
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%2016%20Herbs%20%26%206%20Oils%20Hair%20Infusion.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
                 </div>
             </div>
 
@@ -200,8 +244,8 @@
                     <div class="placeholder-img">[ Keshvilas Hair Oil ]</div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%20Keshvilas%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Keshvilas%20Hair%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
                 </div>
             </div>
 
@@ -213,8 +257,8 @@
                     <div class="placeholder-img">[ Pure Bhringraj Infusion ]</div>
                 </div>
                 <div class="btn-group">
-                    <a href="https://amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi,%20I%20want%20to%20order%20Bhringraj%20Oil" class="action-btn btn-whatsapp">Order via WhatsApp</a>
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Pure%20Bhringraj%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
                 </div>
             </div>
         </div>
@@ -225,7 +269,6 @@
         </div>
     </section>
 
-    <!-- 🌟 Added "reveal" class here as well -->
     <section id="our-story" class="story-section reveal">
         <div class="story-content">
             <h2 class="serif-premium">Our Story</h2>
@@ -254,11 +297,11 @@
             const petal = document.createElement('div');
             petal.classList.add('petal');
             
-            const size = Math.random() * 12 + 6; // random size between 6px and 18px
+            const size = Math.random() * 12 + 6; 
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
             petal.style.left = `${Math.random() * 100}vw`;
-            petal.style.animationDuration = `${Math.random() * 5 + 6}s`; // slow fall between 6s and 11s
+            petal.style.animationDuration = `${Math.random() * 5 + 6}s`; 
             petal.style.delay = `${Math.random() * 5}s`;
 
             container.appendChild(petal);
@@ -272,7 +315,7 @@
             reveals.forEach(windowSection => {
                 const windowHeight = window.innerHeight;
                 const elementTop = windowSection.getBoundingClientRect().top;
-                const elementVisible = 100; // triggers animation when 100px visible
+                const elementVisible = 100; 
 
                 if (elementTop < windowHeight - elementVisible) {
                     windowSection.classList.add('active');
@@ -280,7 +323,32 @@
             });
         }
         window.addEventListener('scroll', revealSections);
-        window.addEventListener('load', revealSections); // Trigger on fresh load too
+        window.addEventListener('load', revealSections);
+
+        // 🧚‍♀️ INTELLIGENT CUTE GUIDE SYSTEM LOGIC
+        const speechBubble = document.getElementById('guide-speech');
+        
+        // Open welcome note automatically after 2.5 seconds
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speechBubble.style.display = 'block';
+            }, 2500);
+        });
+
+        // Dynamic responses when clicking the avatar
+        const randomQuotes = [
+            "🌿 Organic lifestyle is not a trend, it is a return to home.",
+            "🌸 Tip: Massaging Keshvilas oil slowly before sleep boosts mindfulness!",
+            "✨ Remember: Balance with Love, everyday.",
+            "💧 Did you drink water today? Slow living starts with hydration!",
+            "🪷 Want to buy? Use the 'Bring Home' button to drop us a quick text!"
+        ];
+
+        function triggerGuideSpeech() {
+            speechBubble.style.display = 'block';
+            const randomPick = randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
+            speechBubble.innerText = randomPick;
+        }
     </script>
 </body>
 </html>
