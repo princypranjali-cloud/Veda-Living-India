@@ -74,13 +74,23 @@
         .guide-avatar {
             width: 70px; height: 70px; background: #E8F4EE; border: 3px solid var(--leaf-deep-teal);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 2.2rem; cursor: pointer; box-shadow: 0 8px 20px rgba(47,92,71,0.15);
+            cursor: pointer; box-shadow: 0 8px 20px rgba(47,92,71,0.15);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+            overflow: hidden; /* Ensures the image fits perfectly inside the circle */
+        }
+        /* Style for the Real Lotus Image inside the Avatar */
+        .guide-avatar img {
+            width: 82%;
+            height: 82%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
         }
         .guide-avatar:hover { transform: scale(1.1) rotate(5deg); }
+        .guide-avatar:hover img { transform: scale(1.05); }
+        
         .guide-avatar::after {
             content: ''; position: absolute; width: 12px; height: 12px; background: var(--pod-bright-green);
-            border-radius: 50%; bottom: 2px; right: 2px; border: 2px solid var(--white);
+            border-radius: 50%; bottom: 2px; right: 2px; border: 2px solid var(--white); z-index: 10;
         }
         .guide-bubble {
             background: var(--white); border: 1px solid rgba(47,92,71,0.12); padding: 15px 20px;
@@ -294,9 +304,12 @@
     <!-- 🌸 Floating Petals Element -->
     <div id="petal-container"></div>
 
-    <!-- 🧚‍♀️ Cute Interactive Guide Person Structure -->
+    <!-- 🧚‍♀️ NEW UPDATED VIRTUAL LIVING GUIDE WITH REAL LOTUS IMAGE -->
     <div class="guide-wrapper">
-        <div class="guide-avatar" id="veda-guide" onclick="triggerGuideSpeech()">🌸</div>
+        <div class="guide-avatar" id="veda-guide" onclick="triggerGuideSpeech()">
+            <!-- High-quality transparent background real pink-white lotus image -->
+            <img src="https://i.ibb.co/LdQgL8S/lotus-avatar.png" alt="Veda Lotus Guide">
+        </div>
         <div class="guide-bubble" id="guide-speech">
             Hello dear seeker! ✨ Welcome to Veda Living. I am your mindful partner. Scroll down to see our fresh, honest whole-herb hair infusions!
         </div>
@@ -392,7 +405,7 @@
                 <p><strong>Customer Support Email:</strong><br>pptraders@gmail.com</p>
             </div>
             
-            <!-- Column 2: Digital Channels (Clean Vector Icons Replacement) -->
+            <!-- Column 2: Digital Channels -->
             <div class="footer-col">
                 <h3>Connect With Us</h3>
                 <p>Feel free to text us for recommendations, bulk custom orders, or simple guidance.</p>
