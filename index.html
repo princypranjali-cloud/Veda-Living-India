@@ -72,21 +72,19 @@
             position: fixed; bottom: 30px; left: 30px; display: flex; align-items: flex-end; gap: 15px; z-index: 999;
         }
         .guide-avatar {
-            width: 70px; height: 70px; background: #E8F4EE; border: 3px solid var(--leaf-deep-teal);
+            width: 70px; height: 70px; background: #FFF0F3; border: 3px solid var(--leaf-deep-teal);
             border-radius: 50%; display: flex; justify-content: center; align-items: center;
             cursor: pointer; box-shadow: 0 8px 20px rgba(47,92,71,0.15);
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
-            overflow: hidden; /* Ensures the image fits perfectly inside the circle */
         }
-        /* Style for the Real Lotus Image inside the Avatar */
-        .guide-avatar img {
-            width: 82%;
-            height: 82%;
-            object-fit: contain;
+        /* ✨ Premium styling for the Vector Lotus/Spa Icon */
+        .guide-avatar i {
+            font-size: 2.4rem;
+            color: var(--lotus-vibrant-pink);
             transition: transform 0.4s ease;
         }
-        .guide-avatar:hover { transform: scale(1.1) rotate(5deg); }
-        .guide-avatar:hover img { transform: scale(1.05); }
+        .guide-avatar:hover { transform: scale(1.1) rotate(8deg); background: #FCD9E2; border-color: var(--lotus-vibrant-pink); }
+        .guide-avatar:hover i { transform: scale(1.1); color: var(--leaf-deep-teal); }
         
         .guide-avatar::after {
             content: ''; position: absolute; width: 12px; height: 12px; background: var(--pod-bright-green);
@@ -304,11 +302,11 @@
     <!-- 🌸 Floating Petals Element -->
     <div id="petal-container"></div>
 
-    <!-- 🧚‍♀️ NEW UPDATED VIRTUAL LIVING GUIDE WITH REAL LOTUS IMAGE -->
+    <!-- 🧚‍♀️ NEW VECTOR LOTUS VIRTUAL LIVING GUIDE -->
     <div class="guide-wrapper">
         <div class="guide-avatar" id="veda-guide" onclick="triggerGuideSpeech()">
-            <!-- High-quality transparent background real pink-white lotus image -->
-            <img src="https://i.ibb.co/LdQgL8S/lotus-avatar.png" alt="Veda Lotus Guide">
+            <!-- Uses beautiful, scalable spa/lotus vector icon -->
+            <i class="fas fa-spa"></i>
         </div>
         <div class="guide-bubble" id="guide-speech">
             Hello dear seeker! ✨ Welcome to Veda Living. I am your mindful partner. Scroll down to see our fresh, honest whole-herb hair infusions!
