@@ -171,15 +171,106 @@
         .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
         .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
 
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(47, 92, 71, 0.05); background: var(--white); }
-        .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
-        .footer-links a { color: #7A857D; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
-        .footer-links a:hover { color: var(--lotus-vibrant-pink); }
+        /* 🪷 NEW STYLISH & COMPREHENSIVE FOOTER DESIGN */
+        footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(47, 92, 71, 0.08);
+            padding: 70px 8% 30px 8%;
+            color: var(--primary-text);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+        .footer-col h3 {
+            font-size: 1.1rem;
+            color: var(--leaf-deep-teal);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .footer-col p {
+            font-size: 0.88rem;
+            color: #4A524D;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .footer-col strong {
+            color: var(--primary-text);
+        }
+        .social-links-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .social-link-item {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: #4A524D;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .social-link-item:hover {
+            color: var(--lotus-vibrant-pink);
+        }
+        .social-link-item span {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        .cert-badge-box {
+            background: #FCFAF7;
+            border: 1px dashed rgba(47, 92, 71, 0.15);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+        .cert-badge-box p {
+            margin-bottom: 0;
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #5A655F;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(47, 92, 71, 0.06);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: #7A857D;
+        }
+        .legal-links {
+            display: flex;
+            gap: 25px;
+        }
+        .legal-links a {
+            color: #7A857D;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        .legal-links a:hover {
+            color: var(--lotus-vibrant-pink);
+        }
 
         @media (max-width: 768px) {
             .grid-layout { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.3rem; }
             .guide-wrapper { bottom: 20px; left: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .legal-links { justify-content: center; }
         }
     </style>
 </head>
@@ -229,10 +320,8 @@
                     <div class="placeholder-img">[ 16 Herbs Infusion Product ]</div>
                 </div>
                 <div class="btn-group">
-                    <!-- Actual working Amazon link slot -->
                     <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <!-- Direct Action Bring Home Button -->
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%2016%20Herbs%20%26%206%20Oils%20Hair%20Infusion.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
+                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%2016%20Herbs%20%26%206%20Oils%20Hair%20Infusion.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
                 </div>
             </div>
 
@@ -245,7 +334,7 @@
                 </div>
                 <div class="btn-group">
                     <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Keshvilas%20Hair%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
+                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Keshvilas%20Hair%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
                 </div>
             </div>
 
@@ -258,7 +347,7 @@
                 </div>
                 <div class="btn-group">
                     <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
-                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Pure%20Bhringraj%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
+                    <a href="https://wa.me/919235052087?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Pure%20Bhringraj%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome" target="_blank">Bring Home</a>
                 </div>
             </div>
         </div>
@@ -278,12 +367,55 @@
         </div>
     </section>
 
+    <!-- 🪷 REFRESHED ALIGNED FOOTER -->
     <footer>
-        <p>VEDA LIVING INDIA &copy; 2026 | Balance with Love.</p>
-        <div class="footer-links">
-            <a href="journal.html">Journal</a>
-            <a href="terms.html">Terms of Service</a>
-            <a href="privacy.html">Privacy Policy</a>
+        <div class="footer-grid">
+            <!-- Column 1: Core Hub Location -->
+            <div class="footer-col">
+                <h3 class="serif-premium">Veda Living India</h3>
+                <p><strong>Registered Address:</strong><br>1B/16B, Kharkauni, Naini,<br>Prayagraj, Uttar Pradesh, India - 211008</p>
+                <p><strong>Customer Support Email:</strong><br>pptraders@gmail.com</p>
+            </div>
+            
+            <!-- Column 2: Digital Channels -->
+            <div class="footer-col">
+                <h3>Connect With Us</h3>
+                <p>Feel free to text us for recommendations, bulk custom orders, or simple guidance.</p>
+                <div class="social-links-group">
+                    <a href="https://wa.me/919235052087" target="_blank" class="social-link-item">
+                        <span>💬</span> WhatsApp Direct Chat
+                    </a>
+                    <a href="https://wa.me/c/919235052087" target="_blank" class="social-link-item">
+                        <span>🛍️</span> View Our WhatsApp Catalog
+                    </a>
+                    <a href="https://www.instagram.com/vedalivingindia/" target="_blank" class="social-link-item">
+                        <span>📸</span> @vedalivingindia
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 3: Trust Records -->
+            <div class="footer-col">
+                <h3>Trust & Registrations</h3>
+                <div class="cert-badge-box">
+                    <p><strong>FSSAI LICENSE NUMBER</strong></p>
+                    <p>22722147000060</p>
+                </div>
+                <div class="cert-badge-box">
+                    <p><strong>GSTIN REGISTRATION</strong></p>
+                    <p>09KVTPK0261D1ZA</p>
+                </div>
+                <p style="font-size: 0.78rem; color: #7A857D; font-style: italic;">Processed cleanly under parent manufacturer specifications.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>VEDA LIVING INDIA &copy; 2026 | Balance with Love.</p>
+            <div class="legal-links">
+                <a href="journal.html">Journal</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
         </div>
     </footer>
 
