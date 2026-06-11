@@ -1,157 +1,354 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veda Living India | Authentic Ayurvedic Wellness</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Veda Living India | Balance with Love</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #FAF8F5; /* Warm Soft Cream */
-            color: #2C3E35; /* Deep Sage Earth */
-        }
-        .serif-font {
-            font-family: 'Playfair Display', serif;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+        /* 🪷 Beautiful True Lotus Palette */
+        :root {
+            --bg-canvas: #FCFAF7;       
+            --white: #FFFFFF;
+            --primary-text: #242925;   
+            --lotus-vibrant-pink: #E45F88; 
+            --lotus-soft-petal: #FCD9E2;   
+            --pod-bright-green: #76C147;   
+            --leaf-deep-teal: #2F5C47;     
         }
 
-        /* Micro-interactions: Shimmer Effect */
-        .shimmer-btn {
-            position: relative;
-            overflow: hidden;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-canvas); color: var(--primary-text); overflow-x: hidden; scroll-behavior: smooth; position: relative; }
+        .serif-premium { font-family: 'Playfair Display', serif; font-weight: 700; letter-spacing: 0.01em; }
+
+        /* 🍃 Cute Breathing Slow-Pulse Animation */
+        .pulse-slow { animation: slowBreathe 4s infinite ease-in-out; }
+        @keyframes slowBreathe {
+            0%, 100% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
         }
-        .shimmer-btn::after {
-            content: '';
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+
+        /* 🏷️ 10% First Purchase Floating Bubble */
+        .discount-bubble {
+            position: fixed; bottom: 30px; right: 30px; background: var(--lotus-vibrant-pink);
+            color: var(--white); width: 85px; height: 85px; border-radius: 50%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+            box-shadow: 0 8px 25px rgba(228, 95, 136, 0.3); z-index: 999; cursor: pointer;
+            animation: bubbleFloat 3s infinite ease-in-out; border: 2px solid var(--white); text-transform: uppercase;
         }
-        .shimmer-btn:hover::after {
-            transform: translateX(100%);
+        .discount-bubble span { font-size: 1.1rem; line-height: 1; margin-bottom: 2px; }
+        @keyframes bubbleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* 🌸 Cute Falling Petals Container */
+        #petal-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 99; overflow: hidden;
+        }
+        .petal {
+            position: absolute; background-color: var(--lotus-soft-petal);
+            border-radius: 150% 0 150% 150%; 
+            opacity: 0.6; animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ✨ Smooth Scroll Fade-In Effect CSS */
+        .reveal {
+            position: relative; opacity: 0; transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* 🧚‍♀️ CUTE VIRTUAL LIVING GUIDE CONTAINER */
+        .guide-wrapper {
+            position: fixed; bottom: 30px; left: 30px; display: flex; align-items: flex-end; gap: 15px; z-index: 999;
+        }
+        .guide-avatar {
+            width: 70px; height: 70px; background: #E8F4EE; border: 3px solid var(--leaf-deep-teal);
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 2.2rem; cursor: pointer; box-shadow: 0 8px 20px rgba(47,92,71,0.15);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+        }
+        .guide-avatar:hover { transform: scale(1.1) rotate(5deg); }
+        .guide-avatar::after {
+            content: ''; position: absolute; width: 12px; height: 12px; background: var(--pod-bright-green);
+            border-radius: 50%; bottom: 2px; right: 2px; border: 2px solid var(--white);
+        }
+        .guide-bubble {
+            background: var(--white); border: 1px solid rgba(47,92,71,0.12); padding: 15px 20px;
+            border-radius: 16px 16px 16px 4px; max-width: 260px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            font-size: 0.85rem; line-height: 1.5; color: var(--primary-text); display: none;
+            animation: popIn 0.4s ease-out forwards;
+        }
+        @keyframes popIn { from { opacity: 0; transform: translateY(10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        /* Navigation */
+        nav {
+            display: flex; justify-content: space-between; align-items: center; padding: 20px 8%;
+            background: rgba(252, 250, 247, 0.95); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid rgba(47, 92, 71, 0.05);
+        }
+        .logo { font-size: 1.35rem; letter-spacing: 0.12em; color: var(--leaf-deep-teal); text-decoration: none; }
+        .logo span { color: var(--lotus-vibrant-pink); }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a {
+            margin: 0 18px; text-decoration: none; color: var(--primary-text); font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 0.12em; position: relative; padding-bottom: 4px; font-weight: 500;
+        }
+        .nav-links a:hover { color: var(--lotus-vibrant-pink); }
+
+        /* Hero */
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; }
+        .tagline { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.4em; color: var(--leaf-deep-teal); margin-bottom: 20px; font-weight: 600; }
+        .hero h1 { font-size: 3.5rem; color: var(--primary-text); line-height: 1.25; max-width: 850px; margin-bottom: 30px; }
+        .hero h1 em { font-family: 'Playfair Display', serif; font-style: italic; color: var(--lotus-vibrant-pink); }
+
+        /* Product Section */
+        .products-section { padding: 60px 8%; position: relative; }
+        .section-title { text-align: center; font-size: 2.4rem; color: var(--primary-text); margin-bottom: 10px; }
+        .section-subtitle { text-align: center; color: var(--leaf-deep-teal); font-size: 0.95rem; margin-bottom: 60px; font-style: italic; font-family: 'Playfair Display', serif; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        
+        /* 🏷️ Card Hover Animation */
+        .brand-card {
+            background: var(--white); padding: 40px 30px; border-radius: 4px; border: 1px solid rgba(47, 92, 71, 0.08);
+            display: flex; flex-direction: column; justify-content: space-between; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .brand-card:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--lotus-vibrant-pink); 
+            box-shadow: 0 20px 40px rgba(228, 95, 136, 0.06); 
+        }
+        .sub-tag { color: var(--leaf-deep-teal); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; }
+        .brand-card h3 { font-size: 1.6rem; color: var(--primary-text); margin: 10px 0 15px 0; }
+        .brand-card p { color: #4A524D; line-height: 1.7; font-size: 0.9rem; margin-bottom: 15px; }
+        
+        .placeholder-img {
+            width: 100%; height: 220px; background: #FAF8F5; margin: 15px 0; display: flex; align-items: center;
+            justify-content: center; color: #7A857D; font-size: 0.8rem; letter-spacing: 0.1em; border-radius: 2px; border: 1px dashed rgba(228, 95, 136, 0.15);
+            transition: 0.3s;
+        }
+        .brand-card:hover .placeholder-img { background: var(--white); border-color: var(--lotus-vibrant-pink); }
+
+        /* Buttons & Super Cool Shimmer */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .action-btn {
+            width: 100%; padding: 13px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; border: none; border-radius: 2px; cursor: pointer; text-align: center; text-decoration: none; 
+            transition: 0.3s; position: relative; overflow: hidden;
+        }
+        /* Classy Shimmer Animation Effect */
+        .action-btn::after {
+            content: ''; position: absolute; top: 0; left: -50%; width: 30%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); transition: 0.75s;
+        }
+        .action-btn:hover::after { left: 120%; }
+
+        .btn-amazon { background: var(--leaf-deep-teal); color: var(--white); }
+        .btn-amazon:hover { background: var(--primary-text); }
+        
+        /* Premium Bring Home Button Look */
+        .btn-bringhome { background: var(--lotus-vibrant-pink); color: var(--white); font-weight: 700; box-shadow: 0 4px 15px rgba(228,95,136,0.15); }
+        .btn-bringhome:hover { background: #cf4f75; transform: scale(1.01); }
+
+        /* Story Banner */
+        .story-section { padding: 80px 8%; background: var(--white); border-top: 1px solid rgba(47, 92, 71, 0.03); }
+        .story-content { max-width: 750px; margin: 0 auto; text-align: center; }
+        .story-content h2 { font-size: 2.4rem; color: var(--primary-text); margin-bottom: 25px; }
+        .story-content p { font-size: 1.05rem; color: #4A524D; line-height: 1.8; margin-bottom: 20px; text-align: justify; }
+        .story-content p.highlighted-text {
+            font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.3rem;
+            color: var(--lotus-vibrant-pink); margin: 25px 0; text-align: center;
+        }
+
+        .sub-brands-map { background: #FAF8F5; padding: 40px; border-radius: 4px; margin-top: 50px; border-left: 4px solid var(--leaf-deep-teal); text-align: left; }
+        .sub-brands-map h4 { font-size: 1.1rem; color: var(--leaf-deep-teal); margin-bottom: 10px; text-transform: uppercase; }
+
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(47, 92, 71, 0.05); background: var(--white); }
+        .footer-links { margin-top: 15px; display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; }
+        .footer-links a { color: #7A857D; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
+        .footer-links a:hover { color: var(--lotus-vibrant-pink); }
+
+        @media (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.3rem; }
+            .guide-wrapper { bottom: 20px; left: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="sticky top-0 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#E8E2D9] z-50 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl text-[#EB9AAB]">🪷</span>
-                <span class="serif-font text-xl font-bold tracking-wider text-[#2C3E35]">VEDA LIVING</span>
-            </div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-                <a href="#home" class="hover:text-[#EB9AAB] transition-colors">Home</a>
-                <a href="#story" class="hover:text-[#EB9AAB] transition-colors">Our Story</a>
-                <a href="#products" class="hover:text-[#EB9AAB] transition-colors">Products</a>
-                <a href="#companion" class="hover:text-[#EB9AAB] transition-colors">Veda Companion</a>
-                <a href="#contact" class="hover:text-[#EB9AAB] transition-colors">Contact</a>
-            </div>
-            <a href="https://wa.me/c/919235052087" target="_blank" class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider hover:bg-[#3D5449] transition-all">
-                WhatsApp Shop
-            </a>
+    <!-- 🌸 Floating Petals Element -->
+    <div id="petal-container"></div>
+
+    <!-- 🧚‍♀️ Cute Interactive Guide Person Structure -->
+    <div class="guide-wrapper">
+        <div class="guide-avatar" id="veda-guide" onclick="triggerGuideSpeech()">🌸</div>
+        <div class="guide-bubble" id="guide-speech">
+            Hello dear seeker! ✨ Welcome to Veda Living. I am your mindful partner. Scroll down to see our fresh, honest whole-herb hair infusions!
+        </div>
+    </div>
+
+    <div class="discount-bubble" onclick="alert('Use Code: VEDA10 on your WhatsApp Checkout!')">
+        <span>10%</span>OFF
+    </div>
+
+    <nav>
+        <a href="index.html" class="logo serif-premium">VEDA LIVING <span>INDIA</span></a>
+        <div class="nav-links">
+            <a href="#our-products">Our Products</a>
+            <a href="#our-story">Our Story</a>
+            <a href="journal.html">Journal</a>
+            <a href="terms.html">Terms</a>
+            <a href="privacy.html">Privacy</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="relative py-24 px-6 overflow-hidden flex flex-col items-center text-center">
-        <div class="absolute top-10 left-10 text-4xl opacity-20 pointer-events-none">🪷</div>
-        <div class="absolute bottom-10 right-10 text-5xl opacity-20 pointer-events-none">🪷</div>
+    <section class="hero">
+        <span class="tagline">Balance with Love</span>
+        <h1 class="serif-premium pulse-slow">Your Body Was Never Meant to Grow on <em>Synthetic Chemicals</em></h1>
+    </section>
+
+    <section id="our-products" class="products-section reveal">
+        <h2 class="section-title serif-premium">The Veda Registry</h2>
+        <p class="section-subtitle">Everyday care additions prepared honestly, without artificial laboratory isolates</p>
         
-        <div class="max-w-3xl mx-auto z-10">
-            <span class="text-xs uppercase tracking-[0.2em] text-[#A38A75] font-semibold block mb-3">Slowing down, healing deeply</span>
-            <h1 class="serif-font text-4xl md:text-6xl font-normal leading-tight mb-6">
-                Rooted in Family, <br><span class="italic text-[#A38A75]">Perfected by Molecular Science</span>
-            </h1>
-            <p class="text-base text-[#607266] max-w-xl mx-auto mb-10 leading-relaxed">
-                Traditional Ayurvedic practices crafted mindfully in small batches. No shortcuts, just pure botanical wisdom for conscious everyday living.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#products" class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-8 py-3.5 rounded-full font-medium shadow-sm hover:bg-[#3D5449] transition-all">
-                    Bring Home (Direct Order)
-                </a>
-                <a href="#story" class="border border-[#2C3E35] text-[#2C3E35] px-8 py-3.5 rounded-full font-medium hover:bg-[#2C3E35]/5 transition-all">
-                    Read Our Roots
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- OUR STORY PLACEHOLDER -->
-    <section id="story" class="py-16 bg-[#F3EFE9] px-6 text-center border-t border-[#E8E2D9]">
-        <div class="max-w-4xl mx-auto">
-            <p class="text-[#A38A75] italic">Our Story Section yahan aayega...</p>
-        </div>
-    </section>
-
-    <!-- PRODUCTS PLACEHOLDER -->
-    <section id="products" class="py-16 px-6 text-center">
-        <div class="max-w-6xl mx-auto">
-            <p class="text-[#A38A75] italic">Products Section aur reviews yahan aayenge...</p>
-        </div>
-    </section>
-
-    <!-- VEDA COMPANION SECTION -->
-    <section id="companion" class="py-20 bg-[#FAF8F5] px-6 border-t border-[#E8E2D9]">
-        <div class="max-w-4xl mx-auto text-center">
-            <span class="text-2xl mb-2 block">🧘‍♀️</span>
-            <h2 class="serif-font text-3xl text-[#2C3E35] mb-4">Veda Companion</h2>
-            <p class="text-sm text-[#607266] max-w-lg mx-auto mb-8">
-                Apne routine mein thoda thehraav laiye. Hamare sath judiye daily Surya Namaskar aur mindfulness ke chhote par asardaar abhyas ke liye.
-            </p>
-            <button class="shimmer-btn bg-[#2C3E35] text-[#FAF8F5] px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">
-                Start Your Practice
-            </button>
-        </div>
-    </section>
-
-    <!-- FOOTER WITH TRUST INFO -->
-    <footer id="contact" class="bg-[#2C3E35] text-[#FAF8F5]/90 pt-16 pb-8 px-6 border-t border-[#3D5449]">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <span class="text-xl">🪷</span>
-                    <span class="serif-font text-lg font-bold tracking-wider text-[#FAF8F5]">VEDA LIVING</span>
+        <div class="grid-layout">
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>16 Herbs & 6 Oils</h3>
+                    <p>Consciously prepared whole-herb infusion processed safely over a custom-extracted white sesame seed oil base.</p>
+                    <div class="placeholder-img">[ 16 Herbs Infusion Product ]</div>
                 </div>
-                <p class="text-sm text-[#FAF8F5]/60 leading-relaxed mb-4">
-                    Prayagraj se ek choti si koshish, aapki zindagi mein Ayurveda ki sacchi shanti aur modern science ka bharosa lane ki.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="https://www.instagram.com/vedalivingindia/" target="_blank" class="text-[#FAF8F5]/60 hover:text-[#EB9AAB] text-sm">Instagram ↗</a>
-                    <a href="https://wa.me/919235052087" target="_blank" class="text-[#FAF8F5]/60 hover:text-[#EB9AAB] text-sm">WhatsApp Chat ↗</a>
+                <div class="btn-group">
+                    <!-- Actual working Amazon link slot -->
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <!-- Direct Action Bring Home Button -->
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%2016%20Herbs%20%26%206%20Oils%20Hair%20Infusion.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
                 </div>
             </div>
-            
-            <div>
-                <h4 class="serif-font text-lg mb-4 text-[#FAF8F5]">Contact & Firm Details</h4>
-                <p class="text-sm text-[#FAF8F5]/70 leading-relaxed mb-2">
-                    <strong>Address:</strong> 1B/16B, Kharkauni, Naini, Prayagraj, Uttar Pradesh, India - 211008
-                </p>
-                <p class="text-sm text-[#FAF8F5]/70">
-                    <strong>Phone / WhatsApp:</strong> +91 9235052087
-                </p>
-                <p class="text-sm text-[#FAF8F5]/70 mt-2">
-                    <strong>Customer Care:</strong> pptraders@gmail.com
-                </p>
+
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>Keshvilas Oil</h3>
+                    <p>A calm traditional scalp ritual combining 14 raw botanical dry ingredients infused smoothly with whole dairy components.</p>
+                    <div class="placeholder-img">[ Keshvilas Hair Oil ]</div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Keshvilas%20Hair%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
+                </div>
             </div>
 
-            <div>
-                <h4 class="serif-font text-lg mb-4 text-[#FAF8F5]">Government Certifications</h4>
-                <div class="space-y-2 text-xs tracking-wide text-[#FAF8F5]/60">
-                    <p class="bg-[#3D5449] px-3 py-2 rounded">FSSAI Lic No: <span class="text-[#FAF8F5] font-mono">22722147000060</span></p>
-                    <p class="bg-[#3D5449] px-3 py-2 rounded">GSTIN: <span class="text-[#FAF8F5] font-mono">09KVTPK0261D1ZA</span></p>
+            <div class="brand-card">
+                <div>
+                    <span class="sub-tag">Veda Ayurveda</span>
+                    <h3>Bhringraj Oil</h3>
+                    <p>Focused raw single-herb purity that optimizes your daily hair wellness routine without any hidden synthetic fragrances.</p>
+                    <div class="placeholder-img">[ Pure Bhringraj Infusion ]</div>
+                </div>
+                <div class="btn-group">
+                    <a href="https://www.amazon.in" target="_blank" class="action-btn btn-amazon">Buy on Amazon</a>
+                    <a href="https://wa.me/91XXXXXXXXXX?text=Hi!%20I%20want%20to%20Bring%20Home%20the%20Pure%20Bhringraj%20Oil.%20Please%20guide%20me%20with%20the%20checkout." class="action-btn btn-bringhome">Bring Home</a>
                 </div>
             </div>
         </div>
-        
-        <div class="max-w-6xl mx-auto border-t border-[#3D5449] pt-6 text-center text-xs text-[#FAF8F5]/40">
-            &copy; 2026 Veda Living India. Handcrafted mindfully.
+
+        <div class="sub-brands-map">
+            <h4>🪷 One Umbrella. Two Conscious Journeys.</h4>
+            <p><strong>Veda Living India</strong> protects your daily life framework through two channels. <strong>Veda Ayurveda</strong> currently features our 100% chemical-free hair infusions. Our secondary path, <strong>Veda</strong>, will introduce pure, preservative-free Indian kitchen elements and kitchen spices with completely raw natural shelf lives as soon as our strict sourcing records are completely processed.</p>
+        </div>
+    </section>
+
+    <section id="our-story" class="story-section reveal">
+        <div class="story-content">
+            <h2 class="serif-premium">Our Story</h2>
+            <p>In a world running after 'fast living,' we have normalized a dangerous truth—absorbing and consuming synthetic chemicals from morning till night, only to later spend our savings managing lifestyle diseases with allopathic drugs. Having a background in Bioinformatics and Drug Designing, I closely saw how even modern medicines trace their foundations back to natural plants. But when chemicals are synthetically altered, they silently store inside our body, slowly disrupting our natural balance.</p>
+            <p class="highlighted-text">"Veda Living India wasn't born out of a commercial trend; it was born to remind us that our bodies were never meant to grow on synthetic chemicals."</p>
+            <p>We believe Slow Living isn't a premium luxury or a modern choice—it is the only real way to truly live life, not just pass through it. It is about returning to mindful eating, early mornings, and inner peace. Every element shared here is an honest attempt to live in absolute harmony with your body, your family, and the earth under our beautiful anchoring tagline: <strong>Balance with Love</strong>.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>VEDA LIVING INDIA &copy; 2026 | Balance with Love.</p>
+        <div class="footer-links">
+            <a href="journal.html">Journal</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
         </div>
     </footer>
 
+    <script>
+        // 🌸 Script to generate cute falling petals dynamically
+        const container = document.getElementById('petal-container');
+        const maxPetals = 15;
+
+        function createPetal() {
+            if (container.children.length >= maxPetals) return;
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            const size = Math.random() * 12 + 6; 
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${Math.random() * 100}vw`;
+            petal.style.animationDuration = `${Math.random() * 5 + 6}s`; 
+            petal.style.delay = `${Math.random() * 5}s`;
+
+            container.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 11000);
+        }
+        setInterval(createPetal, 800);
+
+        // ✨ Script to activate smooth fade-in on scroll
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(windowSection => {
+                const windowHeight = window.innerHeight;
+                const elementTop = windowSection.getBoundingClientRect().top;
+                const elementVisible = 100; 
+
+                if (elementTop < windowHeight - elementVisible) {
+                    windowSection.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+        window.addEventListener('load', revealSections);
+
+        // 🧚‍♀️ INTELLIGENT CUTE GUIDE SYSTEM LOGIC
+        const speechBubble = document.getElementById('guide-speech');
+        
+        // Open welcome note automatically after 2.5 seconds
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                speechBubble.style.display = 'block';
+            }, 2500);
+        });
+
+        // Dynamic responses when clicking the avatar
+        const randomQuotes = [
+            "🌿 Organic lifestyle is not a trend, it is a return to home.",
+            "🌸 Tip: Massaging Keshvilas oil slowly before sleep boosts mindfulness!",
+            "✨ Remember: Balance with Love, everyday.",
+            "💧 Did you drink water today? Slow living starts with hydration!",
+            "🪷 Want to buy? Use the 'Bring Home' button to drop us a quick text!"
+        ];
+
+        function triggerGuideSpeech() {
+            speechBubble.style.display = 'block';
+            const randomPick = randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
+            speechBubble.innerText = randomPick;
+        }
+    </script>
 </body>
 </html>
